@@ -1,0 +1,58 @@
+body {
+  font-family: Verdana;
+}
+
+
+
+/****************************************************************************
+Styles for the Structural Blocks
+****************************************************************************/
+
+#page_wrapper {
+  width:1000px;
+  margin:auto;
+}
+
+#header {
+  height:100px;
+  border: 1px #000 solid;
+  text-align: center;
+}
+
+#content {
+  min-height:500px;
+  border: 1px #000 solid;
+}
+
+#footer {
+  height:100px;
+  border: 1px #000 solid;
+  text-align: center;
+}
+
+
+/****************************************************************************
+Styles for the Nav Bar
+****************************************************************************/
+
+ul.navbar {
+  list-style-type: none;
+  margin: auto;
+}
+
+ul.navbar li {
+  float:left;
+  margin: 0px 0px 0px 2px;  /*T R B L*/
+}
+
+ul.navbar a {
+  display:block;
+  text-decoration:none;
+  background-color:#EEEEEE;
+  padding: 2px;
+}
+
+ul.navbar a:hover {
+  background-color:#CCCCCC;
+}
+
