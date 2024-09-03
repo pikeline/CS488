@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced CSS Worksheet</title>
+
+  <style type="text/css">
+
+    /*************************************************************************
+    Put your styles for your absolutely positioned blocks below.
+    **************************************************************************/
+    #container{
+      position: relative;
+    }
+    .block{
+      position:absolute;
+      height: 150px;
+      width: 150px;
+      opacity: 0.7;
+    }
+    .pos1{
+      top: 0;
+      left: 0;
+      background-color: red;
+      z-index: 3;
+    }
+    .pos2{
+      top: 50px;
+      left: 50px;
+      background-color: blue;
+      z-index: 2;
+    }
+    .pos3{
+      top: 100px;
+      left: 100px;
+      background-color: green;
+      z-index: 1;
+    }
+    .pos4{
+      top: 0px;
+      right: -75px;
+      background-color: yellow;
+    }
+
+    @media only screen and (max-width: 800px) {
+      .pos4{
+        background-color: orange;
+      }
+    }
+
+    /*************************************************************************
+    CSS Opacity Transition Example
+    **************************************************************************/
+    #div_fade {
+      background-color: #DDDDFF;
+      width: 500px;
+      height: 50px;
+
+      opacity: 1;
+      transition: opacity 2s;
+    }
+
+    #div_fade:hover {
+      opacity: .1;
+    }
+
+
+    /*************************************************************************
+    Styles for multi-level Nav Bar -- sublists are "dropdown" menus"
+    **************************************************************************/
+    /* lists come with styling baggage (like huge padding) so turning all that off */
+    #horiz_nav {
+      list-style-type: none;
+      padding: 0px;
+      margin: 0px;
+    }
+
+    /* Uses child selector (>) -- so the sublist items (descendent li) won't be floated too */
+    #horiz_nav > li {     /* 1. Calculate My Specificity */
+      float: left;
+      margin: 0px 0px 0px 2px;  /*T R B L*/
+      text-align: center;  /* Primary list items will center the text */
+      position: relative;  /* This is so the sublists will position correctly */
+    }
+
+     /* After the menu, clear the floating behavior to prevent residual floating for stuff that comes next */
+     #horiz_nav::after {
+      clear: left;    /* Clears left float  */
+      content: "";
+      display: block;
+    }
+
+    /* This applies to all decendent links -- includes ones in the sublists */
+    #horiz_nav a {    /* 2. Calculate My Specificity */
+      display: block;
+      text-decoration: none;
+      padding: 2px 6px 2px 6px;
+      width: 75px;  /* could remove this to have variable-width nav items */
+    }
+
+    #horiz_nav a:link , #horiz_nav a:visited {    /* 3. Calculate Specificity */
+      color: #000066;
+      background-color: #dddddd;
+    }
+
+    #horiz_nav a:hover , #horiz_nav a:active {
+      color: #333399;
+      background-color: #DDDDFF;
+    }
+
+    #horiz_nav ul a:link , #horiz_nav ul a:visited {    /* 3. Calculate Specificity */
+      color: #000066;
+      background-color: #ff0000;
+    }
+
+    #horiz_nav ul a:hover , #horiz_nav ul a:active {
+      color: #333399;
+      background-color: #0000ff;
+    }
+
+    /* The 3 selectors below make the sublists work as menus */
+
+    /* This styles the sublists */
+    #horiz_nav ul {
+      list-style-type: none;
+      padding: 0px;
+      margin: 0px;
+      position: absolute;  /* Positions the sublist properly under it's top-level menu item */
+      left: 0px;
+      top: 100%;
+
+      opacity: 0;
+   }
+
+    /* Sub-list items only */
+    #horiz_nav ul li {
+      text-align: left;
+    }
+
+    /* Shows the sublist only during the hover state of the top-level menu item */
+    #horiz_nav > li:hover > ul {    /* 4. Calculate My Specificity */
+      background-color: aqua;
+      display: block;    /* The Non-hover state transitions to this. */
+
+      opacity: 1;
+      transition: opacity 1s;
+    }
+
+  </style>
+
+</head>
+<body>
+<h3>Tasks to Complete:</h3>
+
+
+<ul>
+	<li>
+	  Below, provide the Specificity of each CSS Selector marked with a number in the CSS for the nav bar above.
+	  <ol>
+      <li>Specificity = 0101</li>
+      <li>Specificity = 0101</li>
+      <li>Specificity = 0111</li>
+      <li>Specificity = 0112</li>
+    </ol>
+	</li>
+	<li>Alter the CSS so that the sub-menu items are styled noticeably different then the primary menu items.</li>
+	<li>
+	  Add a CSS transition so that the sub-menu items gradually fade in from 0 opacity to 1.  Note: the original submenus start with display hidden and appear by changing to display block.  But you can't do a gradual transition on the CSS display property which is on/off - no intermediary states. So you will have to switch to opacity. Hint: Modify the existing styles. You don't need to create any new selectors.
+	  <div id="div_fade">
+      Fade out example (hover over me).
+      <br>
+      <a href="https://www.w3schools.com/css/css3_transitions.asp" target="_blank">https://www.w3schools.com/css/css3_transitions.asp</a>
+    </div>
+	</li>
+	<li>Place your absolute positioned blocks as outlined in the HW instructions so that they are below the menu system.</li>
+</ul>
+
+
+<br>
+<hr>
+
+<ul id="horiz_nav">
+  <li><a href="#">link 1</a></li>
+  <li>
+    <a href="#">link 2</a>
+    <ul>
+      <li><a href="#">link 1</a></li>
+      <li><a href="#">link 2</a></li>
+      <li><a href="#">link 3</a></li>
+      <li><a href="#">link 4</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="#">link 3......</a>
+    <ul>
+      <li><a href="#">link 1</a></li>
+      <li><a href="#">link 2</a></li>
+      <li><a href="#">link 3</a></li>
+      <li><a href="#">link 4</a></li>
+    </ul>
+  </li>
+  <li><a href="#">link 4</a></li>
+</ul>
+
+<hr>
+<br><br>
+<div id="container">
+  <div class="block pos1"></div>
+  <div class="block pos2"></div>
+  <div class="block pos3"></div>
+  <div class="block pos4"></div>
+</div>
+
+</body>
+</html>
