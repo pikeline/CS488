@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,47 +12,138 @@
     </script>
 
 </head>
+
 <body>
-Javascript - Vanilla edition<br>
+    <br>
+    <div>
+        Javascript - Vanilla edition<br>
 
-Vanilla javascript is javascript without any libraries or frameworks.<br>
+        Vanilla javascript is javascript without any libraries or frameworks.<br>
 
-W3C controls HTML, CSS. ECMAScript controls Javascript.<br>
+        W3C controls HTML, CSS. ECMAScript controls Javascript.<br>
 
-The current version of Javascript is 6.<br>
+        The current version of Javascript is 6.<br>
 
-Javascript is loosely typed, which means you don't have to declare the type of a variable when you declare it.<br>
-ex:<br>
-var x;<br>
-x = 10;<br>
-x = "hello";<br>
-<br>
-it doesn't care<br>
-<br>
-while, Java is strongly typed, which means you have to declare the type of a variable when you declare it.<br>
-ex:<br>
-int x;<br>
-<br>
-javascript is interprited on the fly, which means it is executed line by line.<br>
-Java is compiled, which means it is converted to machine code before it is executed.<br>
+        Javascript is loosely typed, which means you don't have to declare the type of a variable when you declare
+        it.<br>
+        ex:<br>
+        var x;<br>
+        x = 10;<br>
+        x = "hello";<br>
+        <br>
+        it doesn't care<br>
+        <br>
+        while, Java is strongly typed, which means you have to declare the type of a variable when you declare it.<br>
+        ex:<br>
+        int x;<br>
+        <br>
+        javascript is interprited on the fly, which means it is executed line by line.<br>
+        Java is compiled, which means it is converted to machine code before it is executed.<br>
 
-fundamentally, javascript runs at load time<br>
+        fundamentally, javascript runs at load time<br>
 
-or on an event like onload, onclick, etc.<br>
+        or on an event like onload, onclick, etc.<br>
 
-click is a user event<br>
+        click is a user event<br>
 
-onload is a page/automatic event<br>
+        onload is a page/automatic event<br>
 
-javascript is most often used for custom reaction to user events <br>
-for example:<br>
+        javascript is most often used for custom reaction to user events <br>
+        for example:<br>
 
-a onclick = "f()"><br>
+        a onclick = "f()"><br>
 
-^<br>
+        ^<br>
 
-function f(){<br>
-    alert("hello");<br>
-}<br>
+        function f(){<br>
+        alert("hello");<br>
+        }<br>
+    </div>
+    <div>
+        if you do something like: (inspect element)<br>
+        <script>
+            var a = 10; //exists outside
+            if (true) {
+                var b = 1;//also exists outside
+                let c = 10;//exists only inside the block
+            }
+        </script>
+        Historically, JS talked with the browser's API for client side scripting. It is used for more now.
+        <br>
+        Script = code to control an app
+        <br>
+        Code = making the app
+        <br>
+        JS made the jump to server side with Node JS. It was the original server side library.<br>
+        http(s) is called a stateless protocol. It doesn't remember anything about the client.<br>
+        The client sends a request, the server sends a response, and then forgets about the client.<br>
+        If the client needs something, it asks the server, the server sends it, then the server closes the requests.
+        <br>
+        There is no lasting connection<br>
+        Client pull means the client dictates the request, and the server responds.<br>
+        Nowadays, there is websockets, which is a two way connection.<br>
+        It is called websocket secure because it is encrypted.<br>
+        It is a stateful, bi-directional protocol aka server push and client pull.<br>
+        So, when a webpage loads, it can keep the connection open and the server can push data to the client.<br>
+        <br>
+        Javascript was invented by Netscape browser. They also invented cookies, which is a little chunk of data set by
+        the browser.<br>
+        <br>
+        Every browser has a javascript engine. Chrome has V8, Firefox has SpiderMonkey, and Edge has Chakra.<br>
+        <br>
+        Errors are dumped to the console.<br>
+        <h1>Sequence of events when a Page loads</h1>
+        <ol>
+            <li>Load time execution.<br>
+                This sets up event handlers and other initial tasks like creating connections
+            </li>
+            <li>
+                document.DOMContentLoaded event<br>
+                DOM becomes fully initialized and loaded. You can not access html objects before this.
+            </li>
+            <li>
+                window.onload<br>
+                This is when the page is fully loaded. You can access all html objects now.
+            </li>
+            <li>
+                Event loop<br>
+                This is a loop that checks every millisecond for events. It is always running.
+            </li>
+        </ol>
+        HTML objects are every element in the page. They are stored in a tree structure.<br>
+        DHTML is dynamic HTML. It refers to manipulating the DOM with javascript.<br>
+        => you can do dynamic things in pages.<br>
+        It was a marketing term.<br>
+
+        <br>
+        When a function is tied to an event, it is called a callback function.<br>
+        These can be named or anonymous.<br>
+        Anonymous functions are functions without a name.<br>
+
+        <h1>What can you change about an HTML object</h1>
+        You can change it's content, style, and class.<br>
+        ex:<br>
+        obj.innerHTML = "new content";<br>
+        obj.style.backgroundColor = "red";<br>
+        obj.className = "new_class";<br>
+        Note: "new_class" must pre_exist in the style sheet.<br>
+        <br>
+        You can use the ability to modify styles to adfd animations to a page.<br>
+        Ex: add 1 pixel to the width of a div every 10 milliseconds.<br>
+        <h1>Browser objects</h1>
+        window<br>
+        history<br>
+        location<br>
+        navigator (read only)<br>
+        screen (read only)<br>
+        math<br>
+        date<br>
+        JSON<br>
+        window can have methods like open(), resizeto(), etc.<br>
+        history has methods like back(), forward(), go(), etc.<br>
+        The navigator object has properties like appName, appVersion, etc.<br>
+        It gives information about the browser.<br>
+    </div>
 </body>
+
 </html>

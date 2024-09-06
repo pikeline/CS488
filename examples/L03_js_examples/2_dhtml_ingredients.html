@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DHTML Ingredients</title>
+  <script>
+
+    function myfunction() {
+      // Can't do this until the DOM is initialized -- would get null object
+      var block_obj = document.getElementById("block");
+      
+      // The three ingredients of DHTML
+      
+      // Change the content of an HMTL object
+      block_obj.innerHTML = "Dynamic content.";
+      
+      // Assign a new style class 
+      //block_obj.className = "new_style_class_name";
+      
+      // This example doesn't implement a className change like above
+      // because that is not overly useful since both style classes (original and replacement) 
+      // have to pre-exist in the style sheet. 
+      
+      // Changing individual style properties like below is much more useful and can
+      // accomplish the same thing that className can. 
+      
+      block_obj.style.backgroundColor = "lightblue";
+    }
+
+    window.onload = function() {
+
+      // // Can't do this until the DOM is initialized -- would get null object
+      // var block_obj = document.getElementById("block");
+      
+      // // The three ingredients of DHTML
+      
+      // // Change the content of an HMTL object
+      // block_obj.innerHTML = "Dynamic content.";
+      
+      // // Assign a new style class 
+      // //block_obj.className = "new_style_class_name";
+      
+      // // This example doesn't implement a className change like above
+      // // because that is not overly useful since both style classes (original and replacement) 
+      // // have to pre-exist in the style sheet. 
+      
+      // // Changing individual style properties like below is much more useful and can
+      // // accomplish the same thing that className can. 
+      
+      // block_obj.style.backgroundColor = "lightblue";
+      
+      // The style object exposes EVERY CSS property for dynamic change.
+      // Many CSS properties such as background-color are not legal variable names in JS,
+      // so you have to switch to Camel Case.
+       
+    };
+
+
+  </script>
+  
+  <style>
+      #block {
+        width: 150px;
+        height: 150px;
+        background-color: red;
+      }
+    </style>
+</head>
+<body>
+  <h2>Ingredients of DMTHL</h2>
+  This block is dynamially changed when the page first loads, rather than from an event such as onclick. 
+  <br>
+  <div id="block">I am a block.</div>
+
+  <a onclick="myfunction()">Click me</a>
+</body>
+</html>

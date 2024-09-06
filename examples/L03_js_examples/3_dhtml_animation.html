@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>DHTML Animation</title>
+   <script>
+
+    // global variables - need to live outside of function calls.
+    var p = 0;            // Progress along a Linear trajectory       
+    var block_obj = null; // The object in the page to move.
+
+    function go(){
+      block_obj = document.getElementById("block");
+      move_block();
+
+      /*
+      Note: The button can't be clicked until the page is finished loading.
+            Therefore the block exists in the HTML DOM by then.
+      */
+    }
+
+    function move_block() {
+        p += .1;  // Small movement  
+        var x = Math.round(100*Math.cos(p));  // Parametrized Circular Motion
+        var y = Math.round(100*Math.sin(p));
+        block_obj.style.left = 200 + x + "px"; // CSS requires units
+        block_obj.style.top  = 200 + y + "px";
+        setTimeout(move_block,10);   // Delayed Recursion - 10 Millisecond delay
+    }
+
+    </script>
+
+    <style>
+      #block {
+        position: absolute;
+        left: 200px;
+        top: 200px;
+        width: 15px;
+        height: 15px;
+        background-color: red;
+      }
+    </style>
+</head>
+<body>
+<div id="block"></div>
+<button onclick="go()">GO</button>
+</body>
+</html>

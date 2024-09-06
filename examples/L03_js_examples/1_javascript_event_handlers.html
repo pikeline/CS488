@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Event Handlers</title>
+  <script>
+
+    // Functions that are called by events are often called "callback functions"
+
+    // Callback function for the link1 click event
+    // The event handler is set as an HTML attribute in the HTML code
+
+    function myfunction() {
+    
+      // Tangible reactions to the event
+      alert("Link 1 has been clicked!");
+      console.log("Link 1 has been clicked!");
+      
+      // Usually the reaction is some change to the Web page, but these are good during development 
+      // just to make sure the events are firing and the callback function is being called.
+
+      // var some_object = document.getElementById("some_id");
+      // This would be OK since myfunction() can't is called by an event AFTER the page is finished loading.
+    }
+
+    /*
+      Callback function for the page onload event.
+      The onload event is fired automatically by the browser when the page has finished loading.
+      At that point, all the DOM objects are fully initialized.
+    */
+
+    window.onload = function() {
+      
+      console.log("The web page is fully loaded.");
+      
+      // Can't do this until the DOM is initialized -- would get null object
+      var link2_object = document.getElementById("link2");
+
+      // Callback function for the link2 click event
+
+      link2_object.onclick = function () {
+        alert("Link 2 has been clicked!");
+        console.log("Link 2 has been clicked!");
+      };
+
+    };
+
+    /*
+      Notice the notation for the two callback functions for the onload and link2 events.
+      They have no names! Hence they are called "Anonymous Functions".
+    */
+    
+    /*
+      The window.onload actually doesn't fire until the entire web page is completely loaded
+      meaning all graphics, etc. For a heavy page, that can take a while. 
+      
+      However, the DOMContentLoaded event fires as soon as the browser has finished initializing the DOM, 
+      which is typically BEFORE the window.onload event fires.
+      But browsers don't expose document.DOMContentLoaded as a property, so you have to set the 
+      DOMContentLoaded event on the document object using the addEventListener() method. 
+    */
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('The DOM is fully initialized!');
+    });
+
+  </script>
+</head>
+<body>
+  <h2>JavaScript Event Handlers Terminology and Examples</h2>
+
+  You have to read the source code to see what this example is about.
+
+  <br><br>
+
+  <a href="#null" onclick="myfunction()">Link 1</a>
+  <br><br>
+  <a href="#null" id="link2">Link 2</a>
+
+  <!--
+    Setting href="#null" is a common way to make a link that does nothing so that you can rig it with a custom event handler.
+  -->
+
+</body>
+</html>
