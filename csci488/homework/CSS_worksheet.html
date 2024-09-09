@@ -147,7 +147,57 @@
     }
 
   </style>
+  <script>
+    function new_window(){
+      let new_window = window.open("https://www.google.com", "_blank");
+      new_window.resizeTo(window.screen.availWidth, window.screen.availHeight);
+      new_window.moveTo(0,0);
+    }
 
+    function hover_mouseover(){
+      let block = document.getElementById("b1");
+      block.innerHTML = "Hi";
+    }
+    function hover_mouseout(){
+      let block = document.getElementById("b1");
+      block.innerHTML = "Bye";
+    }
+
+    function change(){
+      let blocks = container.getElementsByClassName("block");
+      let colors = ["red", "blue", "green"];
+      for (let i = 0; i < blocks.length - 1; i++){//exclude the last block
+        let rand = Math.floor(Math.random() * 3);
+        blocks[i].style.zIndex = rand;
+        blocks[i].style.backgroundColor = colors[rand];
+      }
+    }
+    
+    function invisible(){
+      let block = document.getElementById("b3");
+      block.style.visibility = "hidden";
+    }
+    function visible(){
+      let block = document.getElementById("b3");
+      block.style.visibility = "visible";
+    }
+
+    window.onload = function() {
+      var b4 = document.getElementById("b4");
+
+      b4.onclick = function(){
+        animate();
+      }
+    }
+    function animate(){
+      let amt = 2;
+      let offset = parseInt(window.getComputedStyle(b4).getPropertyValue("right").slice(0, -2));
+      if (offset < 0){
+        b4.style.right = offset + amt + "px";
+        setTimeout(animate, 10);
+      }
+    }
+  </script>
 </head>
 <body>
 <h3>Tasks to Complete:</h3>
@@ -180,9 +230,9 @@
 <hr>
 
 <ul id="horiz_nav">
-  <li><a href="#">link 1</a></li>
+  <li><a href="#" onclick="new_window()">Window</a></li>
   <li>
-    <a href="#">link 2</a>
+    <a href="#" onmouseover="hover_mouseover()" onmouseout="hover_mouseout()">hover</a>
     <ul>
       <li><a href="#">link 1</a></li>
       <li><a href="#">link 2</a></li>
@@ -191,7 +241,7 @@
     </ul>
   </li>
   <li>
-    <a href="#">link 3......</a>
+    <a href="#" onclick="change()">change</a>
     <ul>
       <li><a href="#">link 1</a></li>
       <li><a href="#">link 2</a></li>
@@ -199,16 +249,16 @@
       <li><a href="#">link 4</a></li>
     </ul>
   </li>
-  <li><a href="#">link 4</a></li>
+  <li><a href="#" onmouseover="invisible()" onmouseout="visible()">Hide</a></li>
 </ul>
 
 <hr>
 <br><br>
 <div id="container">
-  <div class="block pos1"></div>
-  <div class="block pos2"></div>
-  <div class="block pos3"></div>
-  <div class="block pos4"></div>
+  <div id="b1" class="block pos1"></div>
+  <div id="b2" class="block pos2"></div>
+  <div id="b3" class="block pos3"></div>
+  <div id="b4" class="block pos4"></div>
 </div>
 
 </body>
