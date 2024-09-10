@@ -1,0 +1,62 @@
+Here are some rules and some hints:
+
+1)
+Do not break the JSON into smaller objects. Part of this assignment is learning to understand complex JSON structures.
+The JSON string below is a multidimensional array of objects, a typical format for JSON data.
+
+You can copy and paste it into your script.
+The JSON is a one line string.  Your code editor has a setting where you can turn soft wrap on and off.
+
+JSON.parse() it into an object.
+If you write the resulting JSON object to the JS console, you will more clearly see the structure of the data.
+
+[{"animal_id":4,"animal_type":"dog","animal_breeds":[{"breed_id":1,"breed_name":"Beagle"},{"breed_id":2,"breed_name":"Poodle"},{"breed_id":3,"breed_name":"Hound"},{"breed_id":4,"breed_name":"Collie"}]},{"animal_id":7,"animal_type":"cat","animal_breeds":[{"breed_id":1,"breed_name":"Tabby"},{"breed_id":2,"breed_name":"Calico"},{"breed_id":3,"breed_name":"Persian"}]},{"animal_id":11,"animal_type":"bat","animal_breeds":[{"breed_id":1,"breed_name":"Hoary"},{"breed_id":2,"breed_name":"Egyptian Fruit"},{"breed_id":3,"breed_name":"Spotted"},{"breed_id":4,"breed_name":"Leaf-nosed"}]},{"animal_id":17,"animal_type":"rat","animal_breeds":[{"breed_id":1,"breed_name":"Sewer"},{"breed_id":2,"breed_name":"Bilge"},{"breed_id":3,"breed_name":"Dirty"}]}]
+
+2)
+Do not change the id values. This simulates data that would be pulled from a database. The id's would be the database identifiers (primary keys).
+
+3)
+Here's some help with dealing with HTML form elements.
+
+
+Select Menu
+---------------------------------------------
+
+The HTML  (just a hardcoded sample)
+For dynamically generated menu, it would be better to assign the event handler with JavaScript.
+
+<select onchange="my_callback(this)">
+  <option value="">make a selection</option>
+  <option value="22">aardvark</option>
+<select>
+
+The JS
+
+function my_callback(menu_obj) {
+  alert("The value of the currently chosen menu item is " + menu_obj.value);
+  alert("The value of the currently chosen menu item is " + menu_obj.options[menu_obj.selectedIndex].text);
+}
+
+
+
+
+Radio Buttons:
+---------------------------------------------
+
+The HTML (just a hardcoded sample -- would be dynamically generated from the JSON data)
+
+<input type="radio" name="animals" value="1" onclick="my_callback(this)"> dog
+<br>
+<input type="radio" name="animals" value="2" onclick="my_callback(this)"> cat
+
+The JS
+
+function my_callback(radio_obj) {
+  var chosen_value = radio_obj.value;
+  // This is the hidden value of the chosen radio button, 2 if cat is selected
+  if (radio_obj.checked) {
+    // do something
+  }
+}
+
+

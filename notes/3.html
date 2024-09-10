@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More JS notes</title>
+</head>
+
+<body>
+    A callback function is a function that is triggered when an event is triggered.<br>
+    2 ways to assign an event handler to an event:<Br>
+    <ol>
+        <li>
+            HTML attribute<br>
+            ex: <code>&lt;button onclick="alert('Hello!') onmouseover="f()"&gt;Click me&lt;/button&gt;</code>
+        </li>
+        <li>
+            JS property<br>
+            ex:<br>
+            <code>
+                document.getElementById('myButton').onclick = function() {<br>
+                    alert('Hello!');<br>
+                }<br>
+            </code>
+            or, you can do it using addEventListener: (new way)<br>
+            <code>
+                document.getElementById('myButton').addEventListener('click', function() {<br>
+                    alert('Hello!');<br>
+                });<br>
+            </code>
+        </li>
+    </ol>
+    Events that fire, in order:
+    <ol>
+        <li>
+            <code>DOMContentLoaded</code> event fires on the <code>document</code> object.<br>
+            It means the DOM is ready, so you can safely access elements. You can't use stuff like getElementById() before this event<br>
+        </li>
+        <li>
+            <code>window.onload</code> event fires on the <code>window</code> object.<br>
+        </li>
+    </ol>
+    DOM vs BOM<br>
+    The DOM is the Document Object Model, which is a tree-like structure that represents the elements of an HTML document.<br>
+    The BOM is the Browser Object Model, which is a tree-like structure that represents the browser window.<br>
+    Browser objects are things like window, screen, location, history, navigator, etc.<br>
+    Document objects are everything in the document.<br>
+    You can:
+    <ol>
+        <li>
+            change the innerHTML of an element<br>
+        </li>
+        <li>
+            change classnames with the <code>className</code> property<br>
+            Note: the class name has to already exist.
+        </li>
+        <li>
+            change the styles that exist in the <code>style</code> attribute<br>
+            Note: you have to write styles in camel case. For example, <code>backgroundColor</code> instead of <code>background-color</code>
+        </li>
+    </ol>
+    <h1>JSON and DOM Factory</h1>
+    Elements can be created using the DOM factory methods.<br>
+    For example, <code>document.createElement('div')</code> creates a new div element.<br>
+    Attributes can be added to elements using the <code>setAttribute()</code> method.<br>
+    The element will begin to exist when it is appended to the DOM with <code>appendChild()</code>.<br><br>
+    With events, Javascript will automatically pass the event object to the callback function.<br>
+    For example, <code>document.getElementById('myButton').onclick = function(e) { console.log(e); }</code><br>
+    or, in an attribute, <code>&lt;a onclick=f()"&gt;&lt;/a&gt;</code><br>
+    JSON is a text-based protocol that sends plain-text UTF-8 data.<br>
+    It is serialization of objects into strings.<br>
+    Serialization means conversion of objects into strings.<br>
+    This allows for easy passing of objects between systems via http.<br>
+
+</body>
+
+</html>

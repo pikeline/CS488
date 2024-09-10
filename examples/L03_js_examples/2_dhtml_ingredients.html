@@ -4,59 +4,44 @@
   <title>DHTML Ingredients</title>
   <script>
 
-    function myfunction() {
-      // Can't do this until the DOM is initialized -- would get null object
-      var block_obj = document.getElementById("block");
-      
-      // The three ingredients of DHTML
-      
-      // Change the content of an HMTL object
-      block_obj.innerHTML = "Dynamic content.";
-      
-      // Assign a new style class 
-      //block_obj.className = "new_style_class_name";
-      
-      // This example doesn't implement a className change like above
-      // because that is not overly useful since both style classes (original and replacement) 
-      // have to pre-exist in the style sheet. 
-      
-      // Changing individual style properties like below is much more useful and can
-      // accomplish the same thing that className can. 
-      
-      block_obj.style.backgroundColor = "lightblue";
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('The DOM is fully initialized!');
 
-    window.onload = function() {
+      document.getElementById("dhtml_control").addEventListener('click', function() {
+        console.log('The button was clicked');
 
-      // // Can't do this until the DOM is initialized -- would get null object
-      // var block_obj = document.getElementById("block");
-      
-      // // The three ingredients of DHTML
-      
-      // // Change the content of an HMTL object
-      // block_obj.innerHTML = "Dynamic content.";
-      
-      // // Assign a new style class 
-      // //block_obj.className = "new_style_class_name";
-      
-      // // This example doesn't implement a className change like above
-      // // because that is not overly useful since both style classes (original and replacement) 
-      // // have to pre-exist in the style sheet. 
-      
-      // // Changing individual style properties like below is much more useful and can
-      // // accomplish the same thing that className can. 
-      
-      // block_obj.style.backgroundColor = "lightblue";
-      
-      // The style object exposes EVERY CSS property for dynamic change.
-      // Many CSS properties such as background-color are not legal variable names in JS,
-      // so you have to switch to Camel Case.
-       
-    };
 
+        // Can't do this until the DOM is initialized -- would get null object
+        var block_obj = document.getElementById("block");
+
+        // The three ingredients of DHTML
+
+        // 1) Change the content of an HMTL object
+        block_obj.innerHTML = "Dynamic content.";
+
+        // 2) Assign a new style class
+        //block_obj.className = "new_style_class_name";
+
+        // This example doesn't implement a className change like above because it's not that useful
+        // since the new_style_class_name would have to pre-exist in the style sheet.
+
+        // Changing individual style properties like below is much more useful and can
+        // accomplish the same thing that className can.
+
+        // The style object exposes EVERY CSS property for dynamic change.
+
+        block_obj.style.width = "300px";
+        block_obj.style.height = "300px";
+
+        // Many CSS properties such as background-color are not legal variable names in JS, so you have to switch to Camel Case.
+
+        block_obj.style.backgroundColor = "lightblue";
+
+      });
+    });
 
   </script>
-  
+
   <style>
       #block {
         width: 150px;
@@ -67,10 +52,9 @@
 </head>
 <body>
   <h2>Ingredients of DMTHL</h2>
-  This block is dynamially changed when the page first loads, rather than from an event such as onclick. 
-  <br>
+  Click the button to <button id="dhtml_control">do some DHTML</button>
+  <br><br>
   <div id="block">I am a block.</div>
 
-  <a onclick="myfunction()">Click me</a>
 </body>
 </html>

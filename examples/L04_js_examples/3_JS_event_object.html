@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Event Object</title>
+  <script>
+
+  window.onload = function() {
+
+    // Same handler for both checkboxes
+    document.getElementById('checkbox1').onclick = callback;
+    document.getElementById('checkbox2').onclick = callback;
+
+  }
+
+  function callback(e) {
+      // JavaScript AUTOMATICALLY passes an Event Object to an event handler callback function!
+      // Notice above where the event handler is set that nothing is passed to this callback when the handler is set.
+
+      console.log("Lots of stuff in the event object - it's huge!");
+      console.log(e);
+
+      console.log("The HTML element that triggered the event. (same as a getElementById() object)");
+      console.log(e.target);
+
+      console.log("In this case the id and value of the ckeckbox that was checked.");
+      console.log(e.target.id);
+      console.log(e.target.value);
+
+      console.log("Even the coordinates in the web page where the event occurred - EXACT coordinates of the pointer.");
+      console.log("(" + e.clientX + " , " + e.clientY + ")");
+
+  }
+
+  /* Notes:
+
+    1) Callback can be an anonymous function, but it also needs a parameter to receive the event object 
+
+      document.getElementById('checkbox1').onclick = function(e) {
+          // do whatever
+      };
+
+    2) If you set the event handler in the HTML, the event object does NOT get passed to the callback
+        onclick="callback()"
+       You can pass reference to the HTML trigger object, but you don't get the whole the event object.
+        onclick="callback(this)"
+
+
+  */
+
+  </script>
+</head>
+<body>
+  When an event occurs, sometimes you need reference to the HTML object that triggered the event.
+  <br><br>
+  For example, when a pull-down menu is changed (onchange), the callback needs to find the currently selected menu item.
+  <br>
+  Or when a checkbox or radio buttons is clicked, callback needs to find which one was clicked.
+  <br><br>
+  This example uses two checkboxes do demonstrate.
+  <br><br>
+  <input type="checkbox" id="checkbox1" value="data1"> Checkbox 1
+  <br>
+  <input type="checkbox" id="checkbox2" value="data2"> Checkbox 2
+
+</body>
+</html>

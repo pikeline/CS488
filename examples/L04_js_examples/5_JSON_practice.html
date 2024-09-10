@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSON Objects Practice</title>
+  <script>
+
+/***************************************************************************
+ Complex JSON Data Example 1
+***************************************************************************/
+
+var str1 = `{"people": [
+                  {
+                      "MainId": 1111,
+                      "firstName": "Sherlock",
+                      "lastName": "Homes",
+                      "categories": [
+                          {
+                              "CategoryID": 1,
+                              "CategoryName": "Mystery"
+                          },
+                          {
+                              "CategoryID": 2,
+                              "CategoryName": "Crime"
+                          }
+                      ]
+                  },
+                  {
+                      "MainId": 122,
+                      "firstName": "James",
+                      "lastName": "Watson",
+                      "categories": [
+                          {
+                              "CategoryID": 3,
+                              "CategoryName": "Doctor"
+                          }
+                      ]
+                  }
+              ],
+              "messages": ["Message1","Message2","Message3"],
+              "success": true
+            }`;
+
+
+var obj1 = JSON.parse(str1);
+console.log( obj1 );
+
+// Practice exercises
+// Replace the string with an object reference that will result in the same string
+
+console.log( "Sherlock" );
+console.log( true );   // obviously, not a string but a boolean value
+console.log( "Message2" );
+console.log( "Mystery" );
+
+
+/***************************************************************************
+ Complex JSON Data Example 1
+***************************************************************************/
+
+var str2 = `[{
+              "Migranes":[{
+                  "medications":[{
+                      "medicationsClasses":[{
+                          "className1":[{
+                              "associatedDrug":[{
+                                  "name":"asprin",
+                                  "dose":"daily",
+                                  "strength":"200 mg"
+                              }],
+                              "associatedDrug#2":[{
+                                  "name":"ibuprofin",
+                                  "dose":"twice daily",
+                                  "strength":"300 mg"
+                              }]
+                          }],
+                          "className2":[{
+                              "associatedDrug":[{
+                                  "name":"acetaminophen",
+                                  "dose":"thrice daily",
+                                  "strength":"100 mg"
+                              }],
+                              "associatedDrug#2":[{
+                                  "name":"mushrooms",
+                                  "dose":"rarely",
+                                  "strength":"500 mg"
+                              }]
+                          }]
+                      }]
+                  }],
+                  "specialist":"Dr. Smith",
+                  "labs":[{
+                      "lab1": "lab2"
+                  }]
+              }],
+              "Asthma":[{}]
+            }]`;
+
+var obj2 = JSON.parse(str2);
+console.log( obj2 );
+
+// Practice exercises
+// Replace the string with an object reference that will result in the same string
+
+console.log( "Dr. Smith" );
+console.log( "lab2" );
+console.log( "asprin" );
+
+
+  </script>
+</head>
+<body>
+  <br>
+
+  Download this and view in your code editor.
+  <br>
+  All script output is written to the JavaScript console.
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS Variable Scope Notes</title>
+<script>
+
+/*
+  Global variables exist in the RAM for as log as the page (script) is loaded in the browser.
+
+  You don't have to use the var keyword when defining global variables.
+  But it is considered good practice.
+*/
+
+let a = 'a';//block scope
+var x = 'x';//function scope
+y = 'y';//global scope
+
+console.log(x); // OK
+console.log(y); // OK
+
+/*
+  You can force Strict Mode by putting the following line at the top of a script,
+
+  "use strict";
+
+  In strict mode, the variable y would technically not exist in the global scope.
+
+  console.log(y); // Error because y was not formally declared
+
+  Most "casual" JS scripters do not use strict mode.
+*/
+
+
+/*
+  Global Variables are actually properties of the window object.
+*/
+
+console.log(window.x);  // same as console.log(x)
+console.log(window.y);  // same as console.log(y)
+
+/*
+  For local variables, the var keyword is much more important.
+*/
+
+function f(a) {   // input parameters are local variables
+
+  var b = 'b';    // local variable - only exists during function call
+  c = 'c';        // global variable - - exists after function call
+
+}
+
+f('a');  // function call
+
+//console.log(a); // Error Not defined
+//console.log(b); // Error Not defined
+console.log(c); // OK - global variable was initialized in the function but still exists
+
+
+for (var i = 0 ; i <= 100 ; i++) {
+  /*
+   If you declare i using var, the loop counter will exist ONLY during the loop.
+   Otherwise, without var, the loop counter would exist in the global scope after the loop is done.
+  */
+}
+
+</script>
+</head>
+<body>
+See the source code and JS Console.
+</body>
+</html>
+

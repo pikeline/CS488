@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advanced CSS Worksheet</title>
 
   <style type="text/css">
@@ -202,7 +203,7 @@
       block.style.visibility = "visible";
     }
 
-    window.onload = function () {
+    window.onload = () => {//anonymous function shortcut notation
       var b4 = document.getElementById("b4");
 
       b4.onclick = function () {

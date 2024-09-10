@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSON Objects Examples</title>
+  <script>
+
+    /***************************************************************************
+     Making a person object the original JavaScript way.
+    ***************************************************************************/
+
+    var person = new Object();
+    person.property1 = "John";
+    person.property2 = "Doe";
+    person.method1 = function() {
+      console.log("I am " + this.property1 + "!");
+    }
+
+    console.log(person.property1);
+    person.method1();
+
+
+    /***************************************************************************
+     Making a person object using JSON.
+    ***************************************************************************/
+
+    var person = { property1: "John" ,
+                   property2: "Doe" ,
+                   method1: function() {
+                      console.log("This is " + this.property1 + " again!");
+                   }
+    };
+
+    console.log(person.property1);
+    person.method1();
+
+
+    /***************************************************************************
+     When you smash it into a string, you only get the data, not methods.
+    ***************************************************************************/
+    console.log( "A stringified object: " + JSON.stringify(person) );
+
+
+    /***************************************************************************
+     http(s) is a text-based protocol that sends plain-text UTF-8 data.
+     JSON has become very popular for passing around structured data (objects, database queries, ...) as text data.
+     JSON has gradually replaced XML for that purpose.
+    ***************************************************************************/
+
+    // Here is an array of people objects in JSON notation as a single line string.
+
+    var str = '{"people" : [ { "firstName":"John" , "lastName":"Doe" } , { "firstName":"Anna" , "lastName":"Smith" },{ "firstName":"Peter" , "lastName":"Jones" } ]}';
+
+    var obj = JSON.parse(str);
+    console.log( obj.people[0].firstName );
+
+
+    // Here is the same array using concatenation to make it more human readable.
+
+    var str = '{ "people" : [' +
+            '{ "firstName":"John" , "lastName":"Doe" },' +
+            '{ "firstName":"Anna" , "lastName":"Smith" },' +
+            '{ "firstName":"Peter" , "lastName":"Jones" } ]}';
+
+    var obj = JSON.parse(str);
+    console.log( obj.people[1].firstName );
+
+    // Here is the same array as a multi-line string using the backtick `.
+    // This is new to ES6 (ECMA Script 6).
+
+    var str = `{ "people" : [
+                    { "firstName":"John" , "lastName":"Doe" },
+                    { "firstName":"Anna" , "lastName":"Smith" },
+                    { "firstName":"Peter" , "lastName":"Jones" } ]}`;
+
+
+     var obj = JSON.parse(str);
+     console.log( obj.people[2].firstName );
+
+
+     /***************************************************************************
+     It's interesting to see what you get when you send an object to the console.
+     This is very handy for testing and debugging.
+    ***************************************************************************/
+
+    console.log( obj );
+
+    /***************************************************************************
+     Notice the use of the JSON.stringify() and JSON.parse() functions above.
+     The JSON object is built into JavaScript. It was added to help deal with JSON data,
+     especially converting JSON objects into strings, and vise-versa.
+    ***************************************************************************/
+
+  </script>
+</head>
+<body>
+  <br>
+
+  Download this and view in your code editor.
+  <br>
+  All script output is written to the JavaScript console.
+
+</body>
+</html>
