@@ -1,0 +1,22 @@
+/*
+  DANGER!  DO NOT TRY THIS EXAMPLE AT HOME. BEWARE! LOCK YOUR DOORS. PROTECT YOUR CHILDREN. COVER YOUR EYES, ETHEL.
+  OK, the warning above is complete overkill, but you have to understand the power of Element Selectors as opposed to Class Selectors.
+  
+  The Element Selectors below completely re-define the HTML bold and italic elements, effectively reversing their roles. 
+  No one (of sound mind) would ever do this in practice, but beginning programmers need to understand the power of Element Selectors.
+  Using element selectors, you could literally re-define the default behavior of all HTML elements. 
+  
+  Remember the lesson from Spider Man:  "With great power comes great responsibility."  
+  This is not responsible use of CSS!  
+*/
+
+ 
+b {
+  font-style: italic;
+  font-weight: normal;
+}
+
+i {
+  font-style: normal;
+  font-weight: bold;
+}

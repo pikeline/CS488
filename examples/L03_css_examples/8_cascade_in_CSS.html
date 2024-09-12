@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Cascade in CSS</title>
+    
+    <style>
+      
+      /* 
+      The selectors for this example are in an Internal Style sheet. But that has nothing to do with the Cascade Effect.
+      These Selectors could be in an External Style sheet, or mixed between an External and Internal one.
+      Also, the order in which they are defined doesn't matter.  The different "specificities" is the key. 
+      */
+      
+      p {                                       /* Element Selector - Least Specific */
+        background-color: LightYellow;
+        padding: 5px;
+      }
+      
+      .generic_class {                          /* Generic Class Selector - More Specific */
+        background-color: LightGreen;
+        font-size: 14pt;
+      }
+      
+      p.paragraph_class {                       /* Element Class Selector - Even More Specific */
+        background-color: LightBlue;
+        color: DarkRed;
+      }
+    
+      /* 
+      All three of these selectors select the following HTML paragraph (same as 2nd colored block in this page).
+      
+      <p class="generic_class  paragraph_class"></p>
+      
+      When multiple selectors select the same HTML element, the style properties from all the selectors
+      are simply "added together" to style the element.
+      
+      When the SAME style property is "added" in from different selectors, the one from the most specific
+      selector overrides all of the other same ones. 
+      */
+      
+    </style>
+    
+  </head>
+  <body>
+    This example introduces the Cascade aspect of <b>Cascading</b> Style Sheets (CSS).
+    
+    <br><br>
+    
+    The basic principle is this:  
+    <b>When two or more CSS selectors select the same HTML element, 
+    the most specific selector has the highest priority.</b>
+    
+    <br><br>
+    
+    This means a higher priority style property will override a lower priority one. 
+    <br>
+    For example, a background-color from a more specific selector (higher-priority)
+    will <b>override</b> a background-color from a less specific selector (lower-priority).
+    <br>
+    The official terminology is that a more specific selector has higher <b>specificity</b> than a less specific one. 
+    
+    <br><br>
+    
+    See the source code for more information and how the blocks below get their colors.
+    
+    <br>
+    
+    <p class="generic_class">
+        The Element Selector and Generic Class Selector (more specific) both select this block.
+    </p>
+     
+    <p class="generic_class  paragraph_class">
+        The Element Selector, the Generic Class Selector (more specific), and the paragraph-specific 
+        Class Selector (even more specific) all select this block.
+    </p>
+   
+    <p class="paragraph_class" style="background-color: LightGrey;">
+        Styles applied as the value of the HTML style attribute (inline-styles) are the most specific (highest specificity).
+        <br><br>
+        <b>Inline Styles will override styles applied by ANY Selector.</b> This is the lowest level of cascade.
+    </p>
+   
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Inline Blocks</title>
+    
+    <style>
+      
+      .border_thin  {
+         border: 1px solid #000000;
+      } 
+      
+      span.testing  {
+        width: 500px;
+        height: 500px;
+        margin: 500px 0px 500px 0px;
+        padding: 10px;
+      } 
+      
+      span.testing2  {
+        display:inline-block;
+        
+        width: 300px;
+        height: 50px;
+        margin: 15px;
+        padding: 15px;
+      }
+        
+      /*
+      All natural block elements (div, p, h1, etc) default to 
+        display: block;
+      All natural inline elements (span, i, a, etc) default to 
+        display: inline;
+      The CSS display property can change that fundamental behavior for ANY HTML element.
+      */  
+      
+      
+      /****************************************************************************************************
+      LINK BUTTON styles from previous example. 
+      ****************************************************************************************************/
+      a.button_link:link, a.button_link:visited {
+        background-color: #999999;
+        color: #FFFFFF;
+        padding: 15px;
+        margin: 2px;
+        text-align: center; 
+        text-decoration: none;
+        font-weight:bold;
+        
+        display: inline-block;      /* Can use it inline, but style it like a block! */
+      }
+      
+      a.button_link:hover, a.button_link:active {
+        background-color: #666666;
+      }
+      
+    </style>
+        
+  </head>
+  <body>  
+    <br>
+    You have already learned that the two fundamental types of HTML elements are <i class="border_thin">inline</i> and <p class="border_thin">block</p>  
+    Recall that the CSS Box Model lets you style all aspects of a block element: content area, padding, border, and margins.  
+    <br>
+    But, <b>you can't style all box model properties of inline elements.  That is a significant limitation of inline elements.</b> 
+    
+    <br><br>
+    
+    For example, this <span class="testing  border_thin">Inline Element</span> has CSS applied that sets all the following properties 
+    to 500px (a large value): height, width, top/bottom margins. You can see that the browser is completely ignoring those CSS settings.  
+    Inline elements were never intended to be styled like blocks. They are intended to flow with the text, rather than be used as large display structures.
+    
+    <br><br>
+    
+    CSS provides an inline/block hybrid that is created by setting the CSS <b>display</b> property to <b>inline-block</b>.  
+    Such an element still flows inline with the text without carving a block out of the page, but you can style all its box model properties!  
+    This <span class="testing2  border_thin">Inline Block</span> is a span element that has been set in the CSS to display as inline-block. 
+    Thus, the browser has obeyed all of the box model styles applied to it because it is no longer treating it as an inline element. 
+    
+    <br><br>
+    
+    Recall the example earlier in this lesson where the standard inline anchor (a) element was 
+    styled to become a <a class="button_link" href="#">Button Link</a>. Inline blocks provide added flexibility in a variety of situations.  
+    <br>
+    You can style them like blocks, but also place them
+    <a class="button_link" href="#">side</a> <a class="button_link" href="#">by side</a> or 
+    <br><br>
+    <a class="button_link" href="#">stack</a>
+    <br><br>
+    <a class="button_link" href="#">them</a>
+    <br><br>
+    but they don't carve entire blocks out of the page. Inline Blocks are a very useful hybrid between blocks and inline elements. 
+   
+  </body>
+</html>

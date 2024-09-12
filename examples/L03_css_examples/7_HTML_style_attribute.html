@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>The Style Attribute</title>
+    
+    <style>
+    
+      div.person  {
+        color: #999999;
+        font-size: 14pt;
+        font-family: "Comic Sans MS";
+        font-weight: bold;
+      }
+      
+      div.address  {
+        color: #666666;
+        font-size: 12pt;
+        font-family: "Geneva";
+      }
+      
+    </style>
+    
+  </head>
+  <body>
+    The addresses below look quite similar when rendered, with the exception of the last one.  
+    <br>
+    You need to look at the HTML/CSS source code to see what this example is about. 
+    
+    <br><br>
+
+    <!--  
+      The one below is from the the "Old School HTML" example from the lesson that introduced CSS.
+      It's bad to have the presentation instructions (color&font) mixed in with the HTML markup.
+      That's why the font container has been deprecated since about 2000.
+      YUK - NOBODY CODES LIKE THIS any more.  But you still see stuff like this in very old Web pages. 
+    -->
+    
+    <font size="4" color="#999999" face="Comic Sans MS">
+      <b>Bryan Moore</b>
+    </font>
+    <br>
+    <font size="3" color="#666666" face="Geneva">
+      1234 Sunset Ave<br>
+      Columbus, OH 12345<br>
+      (123) 123-4567
+    </font>   
+    
+    <br><br>
+    
+    <!--  
+      The one below shows why CSS is much better.
+      You've learned enough CSS at this point to fully appreciate that.
+    -->
+    
+    <div class="person">
+      Bryan Moore
+    </div>
+    <div class="address">
+      1234 Sunset Ave<br>
+      Columbus, OH 12345<br>
+      (123) 123-4567
+    </div>
+    
+    <br>
+    
+    <!--  
+      The one below is the main point of this example.
+      The style attribute is a UNIVERSAL HTML attribute (can be used in any HTML element).
+      Styles applied in this way are called "Inline Styles".
+      That term has nothing to do with inline vs block HTML elements.
+      Rather, it means you are applying the styles inline with the HTML code.
+      
+      <element style="CSS properties"></element> 
+      
+      Inline styles can be applied to any HTML element (inline or block).
+      
+      You should generally avoid using inline styles much, if at all. 
+      The address just above took a major step forward in removing presentation details from the HTML code.
+      The one below seems to take a step backwards and looks more like the first one in this example. 
+      
+      To achieve the separation of labor that makes CSS so flexible and powerful, you should put 
+      almost all of your CSS in style sheets (internal or external) and NOT inline with the HTML like below.
+    -->
+    
+    <div style="color: #999999; font-size: 14pt; font-family: 'Comic Sans MS'; font-weight: bold;">
+      Bryan Moore
+    </div>
+    <div style="color: #666666; font-size: 12pt; font-family: Geneva;">
+      1234 Sunset Ave<br>
+      Columbus, OH 12345<br>
+      (123) 123-4567
+    </div>
+    
+    <br>
+    
+   <!--  
+      The final example below shows how inline styles are sometimes used to "tweak" an HTML element.
+      If you have lots of names/addresses formatted by these style classes,
+      it's easy to emphasize one of them like below by "tweaking" it with inline styles.
+      
+      An alternative would be to make a second style class (e.g. person2) that sets a different text color.  
+      If only a couple names need "tweaked" for emphasis, using inline styles like below might be preferable 
+      to making an entire new person2 class that's identical to the person class except for the color. 
+
+      The moral of all this?  Inline styles can be useful for tweaking things but they should be used
+      sparingly, not for bulk application of styles.
+    -->
+    
+    <div class="person" style="color: #996666;">
+      Bryan Moore
+    </div>
+    <div class="address">
+      1234 Sunset Ave<br>
+      Columbus, OH 12345<br>
+      (123) 123-4567
+    </div>
+    
+  </body>
+</html>

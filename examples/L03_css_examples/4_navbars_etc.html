@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Navbar Lists</title>
+   
+    
+    <style>
+      /*
+      To use these styles, simply copy them and change the colors. 
+      It is not recommended to otherwise change the styles, other than maybe the padding. 
+      The CSS selectors in these examples are complicated and will be explained in a subsequent example. 
+      */
+      
+      /****************************************************************************************************
+      LINK BUTTON - Copy the both selectors below and change colors and possibly padding.
+      To turn a link into such a button, simply call the style class in the HTML code for the anchor
+      class="button_link"
+      ****************************************************************************************************/
+      
+      a.button_link:link, a.button_link:visited {
+        background-color: #999999;
+        color: #FFFFFF;
+        padding: 15px;
+        text-align: center; 
+        text-decoration: none;
+        font-weight:bold;
+        display: inline-block; /* a bit of magic - explained in another example */
+      }
+      
+      a.button_link:hover, a.button_link:active {
+        background-color: #666666;
+      }
+  
+  
+      /****************************************************************************************************
+      VERTICAL NAV - Copy all 3 selectors below and change colors and possibly padding.
+      To turn a list of links into such a button, simply call the style class in the HTML code for the UL
+      class="vert_nav"
+      ****************************************************************************************************/
+      
+      ul.vert_nav {
+        list-style-type: none;  /* a bit of magic - turns off the bullets */
+        margin: 0px;
+        padding: 0px;
+        width: 200px;
+        background-color: #DDDDDD;
+      }
+      
+      ul.vert_nav li a {
+        color: #000000;
+        padding: 8px 0px 8px 16px;  
+        text-decoration: none;
+        display: block;  /* a bit of magic - turns anchor into block element to fill up entire list item */
+      }
+      
+      ul.vert_nav li a:hover {
+        background-color: #666666;
+        color: #FFFFFF;
+      }
+      
+      
+      /****************************************************************************************************
+      HORIZONTAL NAV - Copy all 4 selectors below and change colors and possibly padding.
+      To turn a list of links into such a button, simply call the style class in the HTML code for the UL
+      class="horiz_nav"
+      ****************************************************************************************************/
+      
+      ul.horiz_nav {
+        list-style-type: none;  /* a bit of magic - turns off the bullets */
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+        background-color: #DDDDDD;
+      }
+      
+      ul.horiz_nav li {
+        float: left;    /* a bit of magic - makes list horizontal - explained in different lesson */
+      }
+      
+      ul.horiz_nav li a {
+        color: #000000;
+        text-align: center;
+        padding: 15px;
+        text-decoration: none;
+        display: block;  /* a bit of magic - turns anchor into block element to fill up entire list item */
+      }
+      
+      ul.horiz_nav li a:hover {
+        background-color: #666666;
+        color: #FFFFFF;
+      }
+      
+    </style>
+    
+  </head>
+  <body>
+    This example demonstrates how to turn links into "buttons" and lists of links into "nav bars.""
+    <br>
+    The bulk of the explanation for this example is in the source code. 
+    
+    <br><br><br>
+    
+    <b>Button Link</b> - a link turned into a box-like structure where the whole thing is clickable. 
+    <hr>
+    <a class="button_link" href="http://www.chicagocubs.com">Chicago Cubs Page</a>
+    
+    <br><br><br>
+    
+   <b> Vertical Nav Bar</b> - a list of links with the list bullets hidden and the links made into clickable blocks inside the list items.  
+    <hr>
+    <ul class="vert_nav">
+      <li><a href="http://www.chicagobulls.com">Chicago Bulls Page</a></li>
+      <li><a href="http://www.chicagobears.com">Chicago Bears Page</a></li>
+      <li><a href="http://www.chicagobears.com">Chicago Bears Page</a></li>
+      <li><a href="http://www.chicagoblackhawks.com">Chicago Blackhawks Page</a></li>
+    </ul>
+    
+    <br><br>
+    
+    <b>Horizontal Nav Bar</b> - same idea as the vertical nav bar, but the list items are floated side by side so it's not vertical. 
+    <hr>
+    <ul class="horiz_nav">
+      <li><a href="http://www.chicagobulls.com">Chicago Bulls Page</a></li>
+      <li><a href="http://www.chicagobears.com">Chicago Bears Page</a></li>
+      <li><a href="http://www.chicagobears.com">Chicago Bears Page</a></li>
+      <li><a href="http://www.chicagoblackhawks.com">Chicago Blackhawks Page</a></li>
+    </ul>
+
+    
+  </body>
+</html>

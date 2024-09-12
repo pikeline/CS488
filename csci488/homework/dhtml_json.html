@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Parsing</title>
+    <style>
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        .hidden {
+            visibility: collapse;
+        }
+
+        .shown {
+            visibility: visible;
+        }
+    </style>
+    <script>
+        var default_json = '[{"animal_id":4,"animal_type":"dog","animal_breeds":[{"breed_id":1,"breed_name":"Beagle"},{"breed_id":2,"breed_name":"Poodle"},{"breed_id":3,"breed_name":"Hound"},{"breed_id":4,"breed_name":"Collie"}]},{"animal_id":7,"animal_type":"cat","animal_breeds":[{"breed_id":1,"breed_name":"Tabby"},{"breed_id":2,"breed_name":"Calico"},{"breed_id":3,"breed_name":"Persian"}]},{"animal_id":11,"animal_type":"bat","animal_breeds":[{"breed_id":1,"breed_name":"Hoary"},{"breed_id":2,"breed_name":"Egyptian Fruit"},{"breed_id":3,"breed_name":"Spotted"},{"breed_id":4,"breed_name":"Leaf-nosed"}]},{"animal_id":17,"animal_type":"rat","animal_breeds":[{"breed_id":1,"breed_name":"Sewer"},{"breed_id":2,"breed_name":"Bilge"},{"breed_id":3,"breed_name":"Dirty"}]}]';
+        var displayed = false;//in the future, I can add the disabled boolean attribute to the button instead
+        var obj;//global scope, bit lazy
+        function toggleVisibility(element) {
+            if (element.classList.contains("hidden")) {
+                element.classList.remove("hidden");
+                element.classList.add("shown");
+            }
+            else {
+                element.classList.remove("shown");
+                element.classList.add("hidden");
+            }
+        }
+        function createobj() {
+            if (displayed == true) {
+                return;
+            }
+            displayed = true;
+            let json = document.getElementById("json").value;
+            try {
+                obj = JSON.parse(json);
+            }
+            catch (error) {
+                console.error("Invalid JSON input. Using default JSON data.\n" + error);
+                obj = JSON.parse(default_json);
+            }
+            console.log(obj);
+            toggleVisibility(document.getElementById("reset"));
+            populateRadios(obj);
+        }
+        function populateRadios(obj) {
+            let container = document.getElementById("radioContainer");
+            for (let i = 0; i < obj.length; i++) {
+                createRadio(obj[i]);
+            }
+        }
+        function createRadio(obj) {
+            //create empty div to contain the radio
+            let parent = document.getElementById("radioContainer");
+            let div = document.createElement("div");
+            parent.appendChild(div);
+            //empty div is the new parent
+            parent = div;
+
+            //create radio
+            let radio = document.createElement("input");
+            radio.setAttribute("type", "radio");
+            radio.setAttribute("name", obj.animal_type);
+            radio.setAttribute("value", obj.animal_id);
+
+            //radio.addEventListener("onclick", alert()); //why does this fire alerts?
+            radio.setAttribute("onclick", "populateChecks(this);")
+            parent.appendChild(radio);
+
+            //create label
+            let label = document.createElement("label");
+            label.setAttribute("for", obj.animal_type);
+            label.innerText = obj.animal_type;
+
+            parent.appendChild(label);
+        }
+        function populateChecks(ele) {
+            let parent = ele.parentNode//the empty div
+            //get specific obj
+            let animal = getAnimal(ele.name);
+            console.log(animal.animal_id);
+
+            breeds = animal.animal_breeds;
+            for (let i = 0; i < breeds.length; i++) {
+                createChecks(breeds[i], parent);
+            }
+        }
+        function createChecks(breed, node) {
+            // Check if the checkbox already exists
+            if (node.querySelector(`input[name="${breed.breed_name}"]`)) {
+                return;
+            }
+            // Create checkbox only if it doesn't exist
+            let checkbox = document.createElement("input");
+            checkbox.setAttribute("type", "checkbox");
+            checkbox.setAttribute("name", breed.breed_name);
+            checkbox.setAttribute("value", breed.breed_id);
+            node.appendChild(checkbox);
+
+            let label = document.createElement("label");
+            label.setAttribute("for", breed.breed_name);
+            label.innerText = breed.breed_name;
+            node.appendChild(label);
+        }
+        function getAnimal(name) {
+            for (let i = 0; i < obj.length; i++) {
+                if (name == obj[i].animal_type) {
+                    return obj[i];
+                }
+            }
+        }
+        function reset() {
+            //initial state: nothing is displayed
+            displayed = false;
+            document.getElementById("radioContainer").innerHTML = "";
+            toggleVisibility(document.getElementById("reset"));
+            
+        }
+    </script>
+</head>
+
+<body>
+    <form>
+        <label for="json">Enter json data:</label>
+        <input type="text" id="json" name="json"
+            value="Enter JSON here. Press submit to use default JSON string given.">
+    </form>
+    <button id="submit" onclick="createobj()">Submit</button>
+    <br><br>
+    <form id="radioContainer">
+
+    </form>
+    <br>
+    <button class="hidden" id="reset" onclick="reset()">Reset</button>
+</body>
+
+</html>

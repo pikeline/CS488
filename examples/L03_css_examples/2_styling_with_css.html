@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>The Power of CSS</title>
+    
+    <link href="styles1.css" rel="stylesheet" type="text/css">
+    
+    <!--  
+    The link element above imports an External Style Sheet, in this case named styles1.css
+    This "links" the exernal style sheet to this page, but the term "import" would be more appropriate.
+    
+    Important Distinction: You create hyperlinks with the anchor (a) element, but import style sheets with the link element.  
+    
+    Stylesheets are just plain text files that given the .css file extension.
+    You should open the styles1.css file in your code editor along with this file. 
+    -->
+    
+  </head>
+  <body>
+    All the explanation for this example is in the source code. 
+    
+    <br><br>
+    
+    <!--  
+    The div elements below each call for a "style class" to be style the elements.  
+    The style classes are defined in the External Style Sheet - styles1.css.
+    
+    The class attribute is universal, meaning it can be used in any HTML element. 
+    You get to invent the actual style class names, which in this example are "person" and "adress"  
+    
+    Consider the power and flexibility of CSS.  Not only can a single edit in the style sheet change every address in this page, 
+    but if the stylesheet were imported into multiple pages, a single edit in the style sheet could actually change multiple pages.
+    -->
+    
+    <div class="person">
+      Bryan Moore
+    </div>
+    <div class="address">
+      1234 Sunset Ave<br>
+      Columbus, OH 12345<br>
+      (123) 123-4567
+    </div>
+    
+    <br><br>
+    
+    <div class="person">
+      Greg Harkenrider
+    </div>
+    <div class="address">
+      1234 Maple Ave<br>
+      Frankfurt, KY 12345<br>
+      (123) 123-4567
+    </div>
+    
+    <br><br>
+    
+    <div class="person">
+     Fred Beerman
+    </div>
+    <div class="address">
+      1234 Wildwood Ave<br>
+      Fort Wayne, IN 12345<br>
+      (123) 123-4567
+    </div>
+    
+    <br><br>
+    
+    <div class="person">
+      Dawn Dettmer
+    </div>
+    <div class="address">
+      1234 Oak Ave<br>
+      Indianapolis, IN 12345<br>
+      (123) 123-4567
+    </div>
+    
+    
+  </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Specificity</title>
+
+  <style type="text/css">
+    /*
+    ************************
+    CSS Specificity Overview
+    ************************
+    
+    The Specificity of a selector is a 4-digit number:
+    
+    abcd
+    
+    Component "a" is 1 for css placed in a style attribute (inline styles), otherwise it’s 0.
+    Component "b" is the number of id selectors in the selector.
+    Component "c" is the number class selectors + pseudo-classes + attribute selectors
+    Component "d" is the number of element selectors (type selectors).
+    
+    The higher the number, the more "specific" the selector is.
+    When two selectors select the same HTML element, the one with higher specificity "wins."
+    
+    When two selectors select the same HTML element and have equal specificity,
+    the selector that comes last in document order4 "wins."
+    
+    */
+      
+    #wrapper div {    /* Specificity = 0101 */
+      padding: 5px;
+      border: 1px solid #000;
+      background-color: red;
+    }
+    
+    #myBlock {        /* Specificity = 0100 */
+      width: 100px;
+      height: 100px;
+      background-color: green;
+    }
+    
+    .myBlock2 {        /* Specificity = 0010 */
+      width: 100px;
+      height: 100px;
+      background-color: green;
+    }
+    
+     /*
+     In the above CSS, both selectors select myBlock.
+     The first selector has higher specificity, so myBlock will be red.
+     Note that myBlock will get all the other style properties from both selectors
+     since none of them are duplicate.
+     
+     */
+  
+  </style>
+
+</head>
+<body>
+
+<div id="wrapper">
+  <div id="myBlock">myBlock</div>
+</div>
+
+<br>
+
+<div class="myBlock2" style="background-color:blue;">myBlock2</div>
+
+<!-- 
+The style attribute applying the "inline-styles" has specificity 1000.
+That's why the style attribute is always the lowest level of cascade.
+-->
+
+</body>
+
+</html>
+

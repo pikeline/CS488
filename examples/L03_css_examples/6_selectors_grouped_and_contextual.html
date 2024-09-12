@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Grouped and Contextual Selectors</title>
+   
+    <style>
+        
+      /****************************************************************************************************
+      GROUPED SELECTORS - group two (or more) different selectors together to apply the same styles to both.
+      This is simply two or more distinct selectors separated by commas.
+      ****************************************************************************************************/
+      
+      
+      h1, h2, h3, h4, h5, h6 {    /* Uniform Margins for all Header Blocks */
+          margin: 5px;  
+      }
+    
+      b.bigger, i.bigger {       /* Two classes for slightly larger bold and italic. */
+          font-size: 110%;       
+      }                             
+      
+      /* 
+      Alternately, could make a generic utility class                              
+       .bigger {font-size: 110%;}
+      that could be called on b, i, or ANY other HTML element. 
+      */
+      
+      a.button_link:link, a.button_link:visited {
+      
+          /* 
+          Both the normal link state and visited link states are grouped to apply the same styles. 
+          The button links in the previous examples were styled by grouping selectors like this.
+          */  
+      }
+      
+      
+      /****************************************************************************************************
+      CONTEXTUAL SELECTORS - select the second selector, only if it's inside of (in the context of) the first.
+      The first selector sets the context. The second selector actually selects the HTML element(s). 
+      This is simply two or more distinct selectors separated by spaces.
+      ****************************************************************************************************/
+      
+      p b {  
+           
+        /* 
+        Bold elements only indide a Paragraph. Only B elements in a P get the styles.
+        This would NOT style the Paragraph. 
+        */  
+      }
+      
+      div.fancy p {       
+        
+        /* 
+        Paragraph elements only indide a class="fancy" div block.
+        This would NOT style the class="fancy" div block. 
+        */
+      }
+      
+      
+      /****************************************************************************************************
+      HORIZONTAL NAV Styles- Same styles from the navbar example earlier in this lesson.
+      Notice all the contextual selectors. For example, the selector
+      
+      ul.horiz_nav li a {...}
+      
+      selects all anchors inside of list items, only inside a class="horiz_nav" unordered list. 
+      It does NOT select the unordered list itself, or its list items.
+      ****************************************************************************************************/
+      
+      ul.horiz_nav {        /* Selects a class="horiz_nav" list */
+        list-style-type: none;  
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+        background-color: #DDDDDD;
+      }
+      
+      ul.horiz_nav li {     /* Selects list items, only inside class="horiz_nav" list */
+        float: left;    
+      }
+      
+      ul.horiz_nav li a {   /* Selects anchors, only inside list items, only inside list */
+        color: #000000;
+        text-align: center;
+        padding: 15px;
+        text-decoration: none;
+        display: block;  
+      }
+      
+      ul.horiz_nav li a:hover {     /* Hover state for the previous selector */
+        background-color: #666666;
+        color: #FFFFFF;
+      }
+      
+      
+      /****************************************************************************************************
+      THE SAME HORIZONTAL NAV Styles - but not using Contextual Selectors
+      These are just normal class selectors, the last with a hover pseudo class applied.
+      These CSS Class Sectors are actually less complicated than the Contextual Selectors above.
+      But look at the HTML code where these style classes are applied.
+      ****************************************************************************************************/
+      
+      ul.myList {        
+        list-style-type: none;  
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+        background-color: #DDDDDD;
+      }
+      
+      li.myListItem {     
+        float: left;    
+      }
+      
+      a.myLink {   
+        color: #000000;
+        text-align: center;
+        padding: 15px;
+        text-decoration: none;
+        display: block;  
+      }
+      
+      a.myLink:hover {     
+        background-color: #666666;
+        color: #FFFFFF;
+      }
+      
+    </style>
+    
+  </head>
+  <body>
+    A previous example on Button Links and Nav Bars used some complicated CSS selectors - 
+    <b>Grouped Selectors and Contextual Selectors</b>.
+    <br>
+    This example explains these types of selectors. 
+ 
+    <br><br>
+    
+    The two nav bars below look identical, but their styles are applied very differently. 
+    <br>
+    As usual, the bulk of the explanation for this example is in the source code. 
+    
+    <br><br>
+    
+    <!-- 
+     This is the nav bar that uses the Contextual Selectors.
+     All the li and anchor styles are applied within the class="horiz_nav" UL context.
+    -->
+    
+    <ul class="horiz_nav">
+      <li><a href="http://www.chicagobulls.com">Chicago Bulls Page</a></li>
+      <li><a href="http://www.chicagobears.com">Chicago Bears Page</a></li>
+      <li><a href="http://www.chicagobears.com">Chicago Bears Page</a></li>
+      <li><a href="http://www.chicagoblackhawks.com">Chicago Blackhawks Page</a></li>
+    </ul>
+    
+    <br><br>
+    
+    <!-- 
+      Below is the nav bar that uses Class Selectors.
+      Notice that every HTML element (ul, li, a) has style classes applied. 
+      
+      The HTML code below is said to have a sickness called "classitis".  
+      That ovbiously doesn't mean a literal sickness, but that style classes are everywhere.
+      The Contextual Selectors have cured the classitis in the HTML code for the first nav bar above!
+      
+      Both ways are technically correct.  It's not wrong for HTML code to have classitis. 
+      However, in Computer Science when there is redundancy in code, there is usually a better way to do it! 
+      Professional developers generally don't like classitis, preferring to use Contextual Selectors.    
+    -->
+    
+    <ul class="myList">
+      <li class="myListItem"><a class="myLink" href="http://www.chicagobulls.com">Chicago Bulls Page</a></li>
+      <li class="myListItem"><a class="myLink" href="http://www.chicagobears.com">Chicago Bears Page</a></li>
+      <li class="myListItem"><a class="myLink" href="http://www.chicagobears.com">Chicago Bears Page</a></li>
+      <li class="myListItem"><a class="myLink" href="http://www.chicagoblackhawks.com">Chicago Blackhawks Page</a></li>
+    </ul>
+
+  </body>
+</html>

@@ -1,0 +1,38 @@
+/* This is a CSS comment for Humans.  Notice that the syntax is different from HTML comments. */
+
+/* 
+This is an Eternal Stylesheet.  
+It could be imported into any number Web pages to supply the same styles to all the pages.
+
+THERE IS NO HTML IN THIS FILE.  It is pure CSS.
+*/
+
+div.person  {
+  color: #999999;
+  font-size: 14pt;
+  font-family: "Comic Sans MS";
+  font-weight: bold;
+}
+
+div.address  {
+  color: #666666;
+  font-size: 12pt;
+  font-family: "Geneva";
+}
+
+
+/* 
+These are called Style Declarations, which are of the general format:
+
+selector {  style properties  }
+
+The Selector determines (selects) which HTML elements to which the style properties can be applied.
+
+The two selectors above are called Class Selectors.
+For example, the first selector will only select an HTML div element if it calls for the class:  <div class="person"></div>
+A Class Selector will NOT select an HTML div element that doesn't call for the style class:  <div></div>
+
+The above style declarations are formatted nicely for a human.  But the following would be the same to a Web browser.
+
+div.address  {color:#666699;font-size:12pt;font-family:"Geneva";}
+*/
