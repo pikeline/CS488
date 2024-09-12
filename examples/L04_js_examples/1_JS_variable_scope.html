@@ -4,39 +4,34 @@
 <title>JS Variable Scope Notes</title>
 <script>
 
-/*
-  Global variables exist in the RAM for as log as the page (script) is loaded in the browser.
+// Global variables exist in the RAM for as log as the page (script) is loaded in the browser.\
 
-  You don't have to use the var keyword when defining global variables.
-  But it is considered good practice.
-*/
-
-let a = 'a';//block scope
-var x = 'x';//function scope
-y = 'y';//global scope
+var x = 'x';    // original way to declare
+let y = 'y';    // new way to declare in JS6
+z = 'z';     // OK, but it is considered good practice to declare with var or let.
 
 console.log(x); // OK
 console.log(y); // OK
+console.log(z); // OK
 
 /*
   You can force Strict Mode by putting the following line at the top of a script,
 
   "use strict";
 
-  In strict mode, the variable y would technically not exist in the global scope.
+  In strict mode, the variable z would not exist.
 
-  console.log(y); // Error because y was not formally declared
+  console.log(z); // Error because z was not formally declared
 
   Most "casual" JS scripters do not use strict mode.
 */
 
 
-/*
-  Global Variables are actually properties of the window object.
-*/
+// Global Variables are actually properties of the window object!
 
-console.log(window.x);  // same as console.log(x)
-console.log(window.y);  // same as console.log(y)
+console.log(window.x);   // OK, same as console.log(x)
+//console.log(window.y); // Error: was declared with let 
+console.log(window.z);   // OK, same as console.log(z)
 
 /*
   For local variables, the var keyword is much more important.
@@ -44,22 +39,34 @@ console.log(window.y);  // same as console.log(y)
 
 function f(a) {   // input parameters are local variables
 
-  var b = 'b';    // local variable - only exists during function call
-  c = 'c';        // global variable - - exists after function call
-
+  var b = 'b';    // local variable - function scope
+  
+  if (true) {
+    let c = 'c';  // local variable - block scope
+  }
+  
+  d = 'd';        // global variable - exists after function call
+                  // BAD to create local variables inside functions
+                  
+  console.log(a);   // OK
+  console.log(b);   // OK
+  //console.log(c); // Error: c only exists in it's block scope (the if statement)
+  console.log(d);   // OK 
 }
 
 f('a');  // function call
 
-//console.log(a); // Error Not defined
-//console.log(b); // Error Not defined
-console.log(c); // OK - global variable was initialized in the function but still exists
+//console.log(a); // Error: Not defined - local to function
+//console.log(b); // Error: Not defined - local to function 
+//console.log(c); // Error: Not defined - local to its block
+console.log(d);   // OK - global variable (but bad to create inside function)
 
 
 for (var i = 0 ; i <= 100 ; i++) {
   /*
-   If you declare i using var, the loop counter will exist ONLY during the loop.
-   Otherwise, without var, the loop counter would exist in the global scope after the loop is done.
+   Declare the loop counter so that it will exist ONLY during the loop.
+   In the following, the loop counter exists in the global scope after the loop is done.
+   for (i = 0 ; i <= 100 ; i++) {}     not good in general
   */
 }
 

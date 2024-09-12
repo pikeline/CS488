@@ -72,7 +72,23 @@
     It is serialization of objects into strings.<br>
     Serialization means conversion of objects into strings.<br>
     This allows for easy passing of objects between systems via http.<br>
-
+    <h1>XML vs JSON</h1>
+    XML was Microsoft's version of JSON. XML makes you invent a markup language. It isn't that efficient to transmit via text,
+    since it has a lot of tags. JSON is more efficient, since it is just key-value pairs.<br>
+    In JSON, {} is an object, and [] is an array, and , separates properties.<br>
+    In JavaScript, you can use backticks ` to create multiple line strings.<br>
+    Inside JSON, you need to use double quotes.<br>
+    <h1>Custom attributes</h1>
+    <div id="myDiv">
+    </div>
+    <script>
+        let div = document.createElement('div');
+        let attr = document.createAttribute('test');
+        attr.value = 'test';
+        div.setAttributeNode(attr);
+        div.innerText = "This code contains a custom div to test the creation of elements with custom attributes."
+        document.getElementById('myDiv').appendChild(div);
+    </script>
 </body>
 
 </html>

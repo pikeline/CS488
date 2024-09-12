@@ -36,8 +36,8 @@ var str1 = `{"people": [
                       ]
                   }
               ],
-              "messages": ["Message1","Message2","Message3"],
-              "success": true
+              "animals": ["dog","cat","rat"],
+              "letters": {"a":"x","b":"y","c":"z"}
             }`;
 
 
@@ -45,13 +45,16 @@ var obj1 = JSON.parse(str1);
 console.log( obj1 );
 
 // Practice exercises
-// Replace the string with an object reference that will result in the same string
+// In each case, supply the object/array references that logs the same thing.
 
 console.log( "Sherlock" );
-console.log( true );   // obviously, not a string but a boolean value
-console.log( "Message2" );
-console.log( "Mystery" );
-
+console.log(obj1.people[0].firstName);  
+console.log( "Doctor" );
+console.log(obj1.people[1].categories[0].CategoryName);
+console.log( "cat" );
+console.log(obj1.animals[1]);
+console.log( 'z' ); 
+console.log(obj1.letters.c);
 
 /***************************************************************************
  Complex JSON Data Example 1
@@ -99,11 +102,14 @@ var obj2 = JSON.parse(str2);
 console.log( obj2 );
 
 // Practice exercises
-// Replace the string with an object reference that will result in the same string
+// In each case, supply the object/array references that logs the same thing.
 
 console.log( "Dr. Smith" );
+console.log(obj2[0].Migranes[0].specialist);  
 console.log( "lab2" );
+console.log(obj2[0].Migranes[0].labs[0].lab1);  
 console.log( "asprin" );
+console.log(obj2[0].Migranes[0].medications[0].medicationsClasses[0].className1[0].associatedDrug[0].name)
 
 
   </script>

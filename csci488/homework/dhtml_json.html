@@ -48,7 +48,6 @@
                 console.error("Invalid JSON input. Using default JSON data.\n" + error);
                 obj = JSON.parse(default_json);
             }
-            console.log(obj);
             toggleVisibility(document.getElementById("reset"));
             populateRadios(obj);
         }
@@ -69,11 +68,11 @@
             //create radio
             let radio = document.createElement("input");
             radio.setAttribute("type", "radio");
-            radio.setAttribute("name", obj.animal_type);
+            radio.setAttribute("name", "animal_radio");
+            radio.setAttribute("animal_name", obj.animal_type);
             radio.setAttribute("value", obj.animal_id);
-
-            //radio.addEventListener("onclick", alert()); //why does this fire alerts?
-            radio.setAttribute("onclick", "populateChecks(this);")
+            radio.setAttribute("onclick", "populateChecks(this);");
+            radio.setAttribute("ondeselect", "deleteChecks(this)");
             parent.appendChild(radio);
 
             //create label
@@ -84,12 +83,14 @@
             parent.appendChild(label);
         }
         function populateChecks(ele) {
-            let parent = ele.parentNode//the empty div
-            //get specific obj
-            let animal = getAnimal(ele.name);
+            let parent = ele.parentNode;
+            let animal = getAnimal(ele.attributes[2].value);//animal_name
             console.log(animal.animal_id);
 
             breeds = animal.animal_breeds;
+            //delete all checks
+            deleteChecks(ele);
+            
             for (let i = 0; i < breeds.length; i++) {
                 createChecks(breeds[i], parent);
             }
@@ -99,7 +100,6 @@
             if (node.querySelector(`input[name="${breed.breed_name}"]`)) {
                 return;
             }
-            // Create checkbox only if it doesn't exist
             let checkbox = document.createElement("input");
             checkbox.setAttribute("type", "checkbox");
             checkbox.setAttribute("name", breed.breed_name);
@@ -110,6 +110,18 @@
             label.setAttribute("for", breed.breed_name);
             label.innerText = breed.breed_name;
             node.appendChild(label);
+        }
+        function deleteChecks(selectedRadio){
+            //get all checks
+            const checks = document.querySelectorAll(`input[type="checkbox"]`);//in the future, use const according to w3
+            for (let i = 0; i < checks.length; i++){
+                let check = checks[i];
+                //remove label
+                let checkname = check.name;
+                let label = document.querySelector(`label[for="${checkname}"]`);
+                label.parentNode.removeChild(label);
+                check.parentNode.removeChild(check);//remove self
+            }
         }
         function getAnimal(name) {
             for (let i = 0; i < obj.length; i++) {

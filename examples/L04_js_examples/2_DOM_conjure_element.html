@@ -5,43 +5,29 @@
   <script>
 
     function conjure_html() {
-      // First build a new HTML anchor element with an href attribute
+
+      // 1) Build a new HTML anchor element.
 
       var a = document.createElement("a");
 
       var href = document.createAttribute("href");
-      //href.value = "http://www.goole.com";  // To create normal link to something
-      href.value = "https://www.cubs.com";          // Kill normal link behavior -- custom onclick handler set further below.
+      //href.value = "http://www.steelers.com";  // To create a normal link to something
+      href.value = "#null";          // Kill normal link behavior -- custom onclick handler set further below.
       a.setAttributeNode(href);
 
-      var content = document.createTextNode("A very cool Web Site");
+      var content = document.createTextNode("A Link Conjured from thin air!  Sorcery or DOM factory?");
       a.appendChild(content);
 
-      // At this point the anchor has been created, but it is not yet inserted into the page.
-      // The code below inserts it into the DOM as a child of the div block.
+      // Can add an event handler as usual - the a object created above is just like objects from getElementById()
+      a.onclick = function() {
+        location.href = "http://www.steelers.com";
+      }
+
+      // 2) Insert it into the DOM as a child of the conjure_container div block.
+      //    Prior to this, the anchor has been created in memory, but it is not yet inserted into the page.
 
       var conjure_container = document.getElementById('conjure_container');
       conjure_container.appendChild(a);
-
-
-      /*
-      Can add an event handler as usual - the a object created above is just like objects from getElementById()
-        You could also add the handler before you put the anchor into the page (above appendChild())
-      */
-
-      a.onclick = function() {
-        console.log("The conjured link has been clicked!");
-      }
-
-      /*
-      Alternately, you could add an event handler the "HTML way" - conjure an onclick HTML attribute for the anchor
-      However, the JavaScript approach above has distinct advantages as the next example shows.
-
-      var onclick_att = document.createAttribute("onclick");
-      onclick_att.value = 'callback()';
-      a.setAttributeNode(onclick_att);
-
-      */
 
     }
 
