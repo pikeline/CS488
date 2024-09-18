@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JQuery VS Vanilla JS Events and Iteration</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+$(document).ready( function() {
+
+      /****************************************************************************************
+      Event Callbacks -  Setting up Event Handlers using JQuery is very similar to Vanilla JS.
+      *****************************************************************************************/
+
+      // JQuery - setting an anonymous event callback function
+      $("#myBlock").click( function(e) {
+        console.log("JQuery Callback: The following Button was Clicked.");
+        console.log(e.target);  // the element that triggered the event
+      });
+
+
+      // Vanilla JS - the original way
+      document.getElementById('myBlock').onclick = function(e) {
+        console.log("Vanilla Callback #1:  The following Button was Clicked.");
+        console.log(e.target);  // the element that triggered the event
+      };
+
+      // Vanilla JS - newer way - works for all events, including DOMContentLoaded
+      document.getElementById("myBlock").addEventListener("click", function(e) {
+        console.log("Vanilla Callback #2:  The following Button was Clicked.");
+        console.log(e.target);  // the element that triggered the event
+      });
+
+      /*
+       Note: If you click on myBlock in the page, you will see that you can set multiple callbacks
+       for the same event.  They are called in the order that they are assigned to the event.
+      */
+
+
+      /****************************************************************************************
+      Iteration with traditional loops:  No problem, but not the best way in JS
+      *****************************************************************************************/
+
+      console.log("For Loop using JQuery Objects.");
+
+      $LIobjects = $("#myList li");   // Array of all the list items
+      for ( var i = 0; i < $LIobjects.length; i++ ) {
+      	console.log( $LIobjects.eq(i).html() );      // the eq(i) seems funky to me
+      }
+
+      console.log("For Loop using vanilla DOM Objects.");
+
+      LIobjects = document.querySelectorAll('#myList li');   // Array of all the list items
+      for ( var i = 0; i < $LIobjects.length; i++ ) {
+      	console.log( LIobjects[i].innerHTML );
+      }
+
+
+      /****************************************************************************************
+      Iteration as a Sequence of Events:  Each pass of the loop calls a callback function.
+      JS is an Event Driven Language - even for iteration!
+      *****************************************************************************************/
+
+      console.log("JQuery each() Iterator");
+
+      $('#myList li').each( function() {
+        console.log( $(this).html() );   // each pass of the lop, $(this) is a different JQuery LI object
+      });
+
+      console.log("Vanilla JS forEach() Iterator."); //  This is something else vanilla JS eventually copied from JQuery.
+
+      document.querySelectorAll('#myList li').forEach( function(item) {
+        console.log( item.innerHTML );      // forEach() parameter is passed a different LI DOM Object each pass of the loop.
+      });
+
+
+}); // End JQuery Ready Event Callback.
+
+
+</script>
+</head>
+<body>
+ <b>You need to read the source code.</b>
+ <br>
+ <br>
+
+ <div id="myBlock" style="background-color: #EEE;">Clicking this block writes stuff to the console.</div>
+
+ <br>
+ <br>
+
+
+  <ul id="myList">
+    <li>cat</li>
+    <li>bat</li>
+    <li>rat</li>
+  </ul>
+
+
+</body>
+</html>

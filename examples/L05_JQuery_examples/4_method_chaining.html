@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Method Chaining</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script>
+
+    $(document).ready( function() {
+
+          $("#button").click( function(e) {
+
+            // Chained methods execute from left to right
+            // Just some good clean fun here!
+            $('#block').fadeOut(600).delay(1000).fadeIn(600).animate({left: '250px'}).delay(1000).animate({left: '0px'}).fadeOut(600).delay(1000).fadeIn(600);
+
+          });
+
+    }); // End JQuery Ready Event Callback.
+
+  </script>
+
+  <style>
+    #block {
+      position: relative;
+      height: 200px;
+      width: 200px;
+      background-color: #EEE;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+ <b>You need to read the source code.</b>
+ <br><br>
+ JQuery popularized the technique called <i>Method Chaining</i> as demonstrated in this example.
+ <br><br>
+ Animations such as this are not relevant to the Homework for this lesson, but nonetheless this is a fun example
+ showing the fun nature of JQuery.
+
+ <br><br>
+
+ <button id="button">Click to Animate the Block.</button>
+ <br><br>
+ <div id="block">Block 1</div>
+
+</body>
+</html>

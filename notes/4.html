@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery</title>
+</head>
+<body>
+    <h1>Some more notes on JSON</h1>
+    JSON is commonly passed between apis, and stored as strings. You can also build up objects programatically, and then convert them to JSON strings by creating an obj, then passing over the methods and properties.
+    <h1>JQuery</h1>
+    Jquery is a library to make it easier to work with the DOM. Many of the features of JQuery were added to vanilla JS in ES6.
+    <br>
+    <h1>Popular frameworks</h1>
+    <ol>
+        <li>
+            Angular JS<br>
+            Angular JS is a framework for building web apps. It is maintained by Google. It is a full featured framework, and is used for building single page applications.
+        </li>
+        <li>
+            React<br>
+            React is a library for building user interfaces. It is maintained by Facebook. It is used for building single page applications.
+        </li>
+    </ol>
+    A CDN (content delivery network) is a network of servers that deliver web content to users based on their geographic location. CDNs are used to distribute static assets such as images, videos, and JavaScript files to users around the world. By using a CDN, you can improve the performance and reliability of your website by reducing latency and increasing availability.
+    Otherwise, you would have to download the file and upload it to your server.
+    <h1>"use strict"</h1>
+    "use strict"; is a directive that was introduced in ECMAScript 5. It is used to enable strict mode, which is a restricted variant of JavaScript that disallows certain features that are prone to errors. Strict mode helps to catch common coding mistakes and prevent them from running silently.
+    One of the issues with loosely typed languages is that people get lazy. They don't declare variables, and they don't use the var keyword. This can lead to bugs, and can make the code harder to read. Strict mode helps to prevent these issues by enforcing best practices and catching common mistakes.
+    <h1>===</h1>
+    === is like ==, but it also forces type matches. For example, 1 == "1" is true, but 1 === "1" is false.
+    In a boolean context, "", 0, null, undefined, false, and NaN are all false.
+    <h1>JQuery</h1>
+    You can grab html objects with JQuery by using the $ sign. For example, $("#myBlock") will grab the object with the id myBlock, $("ul li") will grab all the li elements in a ul element, and $(".fancy") will grab all the elements with the class fancy. It is a collection of list items.
+    Vanilla JS can do the same with document.querySelectorAll
+    <h1>function chaining</h1>
+    You can chain functions in JQuery. For example, $("#myBlock").css("color", "red").hide().fadeIn(1000) will change the color of the object with the id myBlock to red, hide it, and then fade it in over 1 second. It works by returning the object that the function was called on.
+    Note: $(document).ready() is the event that fires after all JQuery objects are initialized. This event fires AFTER the DOMContentLoaded event and before window.onload.
+    You can do $('ul li').click(function() { ... }); to add an event listener to all the li elements in a ul element.
+    Otherwise, you can do $('ul li').click() to trigger the event.
+    If you have multiple callback functions, it would activate all of them.
+    <h1>Looping</h1>
+    Looping in Jquery is done with the each operator. For example, $("ul li").each(function() { ... }); will loop through all the li elements in a ul element.
+    You can refer to the current element with $(this).
+</body>
+</html>

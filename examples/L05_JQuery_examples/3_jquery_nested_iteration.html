@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JQuery Nested Iteration Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+$(document).ready( function() {
+
+  /*
+  In each case below:
+   The outer loop iterates over all div blocks in the page.
+   The inner loop iterates over all of its children p blocks.
+  */
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  console.log("JQuery - Nested each() Iterators");
+
+  $('div').each( function() {
+
+      console.log( $(this) );  // JQuery div Objects
+
+      $(this).children().each( function() {
+
+        console.log( $(this) );  // JQuery p Objects
+                                 // the inner each() iterator has its own scope for $(this)
+
+        // Just some good clean fun here
+        if ($(this).attr('coolest') == 'yes' ) {
+          $(this).css('background-color','#FEE');
+        }
+
+      }); // end inner loop iterator
+  }); // end outer loop iterator
+
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  console.log("JQuery - Nested each() Iterators - More Readable");
+
+  var $div = null;
+  var $p   = null;
+  $('div').each( function() {
+      $div = $(this);
+      console.log($div);
+      $div.children().each( function() {
+        $p = $(this);
+        console.log($p);
+      }); // end inner loop iterator
+  }); // end outer loop iterator
+
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  console.log( "Vanilla JS -  Nested forEach() Iterators." );
+
+  // Vanilla JS eventually adopted the concept of each() iterators from JQuery, but called it forEach()
+  // But there is a strange Technicality involving an array conversion as noted below
+
+  document.querySelectorAll('div').forEach( function(div_obj) {
+    console.log(div_obj);
+
+    p_objects = Array.from(div_obj.children);  // Technicality: convert div_obj.children from a NodeList to an Array
+
+    p_objects.forEach( function(p_obj) {
+        console.log(p_obj);
+    });
+  });
+
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  console.log( "Vanilla JS - cleaner approach using for() loops." );
+
+  /* Vanilla JS provides a for() loop that works more like a traditional loop than an iterator method.
+
+      for (var obj of array_of_objects) {
+        // do something with obj
+      }
+  */
+
+  var div_objects = document.querySelectorAll('div');
+  for (var div_obj of div_objects) {
+    console.log(div_obj);
+    for (var p_obj of div_obj.children) {
+      console.log(p_obj);
+    }
+  }
+
+}); // End JQuery Ready Event Callback.
+
+
+</script>
+</head>
+<body>
+
+  <div>
+    <p>I like aardvarks.</p>
+    <p coolest="yes">I like wildebeest.</p>
+    <!--
+      coolest is obviously NOT a real HTML attribute
+      CSS frameworks make heavy use of made up attributes
+    -->
+    <p>I like bandicoots.</p>
+    <p>I like using cool animal names in examples.</p>
+    <p>I like Gerenuks.</p>
+  </div>
+
+  <div>
+    <p>Cats</p>
+    <p>Bats</p>
+    <p>Rats</p>
+    <p>Any animal names will suffice.</p>
+    <p>But cool animal names are cooler.</p>
+  </div>
+
+</body>
+</html>

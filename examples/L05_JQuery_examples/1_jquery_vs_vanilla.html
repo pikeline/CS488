@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JQuery VS Vanilla JS Objects</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!--
+    You can load JQuery from a CDN (Content Delivery Network like above, or actually download the file.
+  -->
+
+
+<script>
+
+$(document).ready( function() {
+
+      /****************************************************************************************
+      $(document).ready() is the event that fires after all JQuery objects are initialized.
+      This event fires AFTER the DOMContentLoaded event.
+
+      The two notations below are equivalent, but the first one is more explanatory.
+
+      $(document).ready( function() { ... } );
+
+      $( function() { ... } );     // shortcut notation for above
+      ****************************************************************************************/
+
+
+      /****************************************************************************************
+      $ is a legal character in variable name in JS.
+      $ is usually only used for reference to a library/framework object (such as JQuery).
+      ****************************************************************************************/
+
+      var blockObj = document.getElementById('myBlock');    // DOM Object (Vanilla JS)
+
+      var $blockObj = $('#myBlock');                        // JQuery Object
+
+      console.log("See the DOM Object");
+      console.log(blockObj);
+
+      console.log("See the JQuery Object");
+      console.log($blockObj);
+
+
+      /****************************************************************************************
+      JQuery Objects can be obtained using ANY type of CSS Selector
+      A JQuery Object offers much more functionality.
+      ****************************************************************************************/
+
+      $('#myBlock')       // a single JQuery Object from an HTML element's unique ID
+      $('.fancy')         // JQuery Object(s) for ALL HTML elements with class="fancy"
+      $('a')              // JQuery Object(s) for ALL HTML anchor elements
+
+      // The last two above may result in Arrays of JQuery Objects if the selectors match multiple HTML elements
+
+      // The corresponding vanilla JS object getters for DOM objects are as follows.
+
+      document.getElementById('myBlock')          // no # sign
+      document.getElementsByClassName('fancy')    // no . sign
+      document.getElementsByTagName('a')
+
+      // After JQuery got very popular, they added querySelectorAll() to vanilla JS to keep up.
+
+      document.querySelectorAll('.fancy')
+      document.querySelectorAll('a')
+
+      // Over the years, they gradually added much of the functionality of JQuery to vanilla JS.
+
+
+      /****************************************************************************************
+      DHTML with JQuery
+      *****************************************************************************************/
+
+      $('#myBlock').html('New Content');
+      $('#myBlock').addClass('someStyleClass');
+      $('#myBlock').removeClass('someStyleClass');
+      $('#myBlock').css('background-color','#DDDDDD');        // Setter
+
+      console.log( $('#myBlock').css('background-color') );   // Getter (only pass 1st parameter)
+
+
+      // Vanilla JS equivalents to the above
+      document.getElementById('myBlock').innerHTML = 'New Content';
+      document.getElementById('myBlock').classList.add("someStyleClass");
+      document.getElementById('myBlock').classList.remove("someStyleClass");
+      document.getElementById('myBlock').style.backgroundColor = '#DDDDDD';        // need camel case, unlike in JQuery version above
+
+      var style = getComputedStyle(document.getElementById('myBlock'));
+      console.log( style.backgroundColor );
+
+
+      /****************************************************************************************
+      JQuery bigtime eclipses vanilla JS with its additional DHTML functionality.
+      There are no vanilla DOM equivalents for the following JQuery object methods, and there are many more.
+
+      animate()
+      hide()
+      show()
+      toggle()
+      fadeIn()
+      fadeOut()
+      slideUp()
+      slideDown()
+
+      *****************************************************************************************/
+
+
+      /****************************************************************************************
+      Think of a JQuery Object as a wrapper for an HTML element DOM object.
+      A JQuery Object offers much more functionality.
+      ****************************************************************************************/
+
+      // A vanilla DOM object can be obtained from "inside" a JQuery Object as shown below (but there is rarely a need to).
+      // blockObj is the same DOM object in all three cases below.
+
+      blockObj = document.getElementById('myBlock');
+      blockObj = $('#myBlock')[0];
+      blockObj = $('#myBlock').get(0);
+
+
+}); // End JQuery Ready Event Callback.  Would be called AFTER a DOMContentLoaded event callback.
+
+
+</script>
+</head>
+<body>
+  In addition to the information below, <b>you need to read the source code.</b>
+  <br>
+  <br>
+  JQuery was created in 2006, and very quickly became the most popular JavaScript library in the world.
+  <br>
+  It was designed to handle Browser Incompatibilities and to simplify HTML DOM Manipulation, Event Handling, Animations, and Ajax.
+
+  <ul>
+  	<li>Vanilla JS 5 (2009) <span style="text-decoration: line-through;">pirated</span> adopted much of the jQuery functionality.</li>
+  	<li>But it still remained the GoTo tool for AJAX (Asynchronous http(s) Transactions) until the vanilla Fetch API for AJAX was released in 2015 (not part of vanilla JS 6, but about the same time).</li>
+  	<li>It was used in most CSS UI libraries such as Bootstrap, which finally went pure vanilla in about 2020 with Bootstrap 5.</li>
+  	<li>Note: JQuery is NOT a competitor of ReactJS, which serves a significantly different purpose.</li>
+  </ul>
+
+</body>
+</html>
