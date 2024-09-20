@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AJAX Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+
+     ///////////////////////////////////////////////////////////////////////////////////////
+     // Event handler for button.
+     ///////////////////////////////////////////////////////////////////////////////////////
+     function ajax_call() {
+
+        var animal_id = document.getElementById("animal_id").value;  // selected menu item
+
+        // The JQuery version of above is kind of funky
+        //    animal_id = $("#animal_id option:selected").val();  // selected menu item
+        // :selected is a CSS pseudo-class selector.
+
+        if ( animal_id != -1 ) {
+            var server_script = 'https://csci.lakeforest.edu/knuckles/csci488/api_examples/animal_breeds_api.php?animal_id='+animal_id;
+            console.log(server_script);
+
+            $.ajax({
+              type: 'GET',
+              url: server_script,
+              dataType: 'json',
+              error: error_callback,
+              success: success_callback
+            });
+        }
+     }
+
+
+     ///////////////////////////////////////////////////////////////////////////////////////
+     // Success Callback
+     //   The data returned from server is automatically passed into the success callback
+     //   Also, the returned JSON string is parsed into an object because of dataType:'json' in the AJAX call
+     //   If you do  dataType:'text', you would need to manually JSOM.parse() the returned string
+     ///////////////////////////////////////////////////////////////////////////////////////
+     function success_callback(response) {
+        console.log(response);  // array of animal breeds
+
+        // Put the breeds in the page with line breaks in between.
+        var breeds_string = '';
+        for ( var i = 0; i < response.length ; i++ ) {
+        	breeds_string = breeds_string + response[i].breed_name + '<br>';
+        }
+        $('#mydiv').html(breeds_string);
+     }
+
+     ///////////////////////////////////////////////////////////////////////////////////////
+     // Error Callback
+     //   Several useful objects are automatically passed in if an error occurs
+     ///////////////////////////////////////////////////////////////////////////////////////
+     function error_callback(req, status, err) {
+        console.log("OOPS: " , req, status, err )
+     }
+
+  </script>
+</head>
+<body>
+<h4>AJAX Example</h4>
+This example makes Asynchronous (page not reloaded) AJAX requests to a server to load more data supplied by the (animal_breeds_api.php PHP script).
+<br><br>
+
+<select id="animal_id">
+  <option value="-1">Dummy Option</option>
+  <option value="4">dog</option>
+  <option value="7">cat</option>
+  <option value="11">bat</option>
+  <option value="17">rat</option>
+</select>
+<br><br>
+<button type="button" onclick="ajax_call()">Get Animal Breeds From Server</button> This sends only the menu choice to the server.
+
+<br><br>
+
+<div id="mydiv"></div>
+</body>
+</html>

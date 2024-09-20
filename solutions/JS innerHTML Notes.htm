@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html class=" epbxg idc0_350"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>JS innerHTML Notes</title>
+<script>
+
+/*
+-----------------------------------------
+Notes on Building menu by assigning strings to innerHTML
+-----------------------------------------
+*/
+
+// You can conjure HTML by assigning raw HTML code to the innerHTML of some HTML object
+
+window.onload = function() {
+  var html_obj = document.getElementById('block');
+  var url = "https://www.google.com";
+  
+  html_obj.innerHTML = html_obj.innerHTML + '<a href="' + url + '">click me</a>';
+}
+
+/*
+However, this is very Inefficient.
+After each new assignment, the entire innerHTML has to be re-parsed into chunk of DOM tree.
+That means if you are conjuring elements in this way inside a loop (like building a list, table, or group of form elements)
+Each pass of the loop causes a re-parse of ALL the code inside the HTML object, even the stuff that was added on previous passes.
+
+More Reading:
+https://stackoverflow.com/questions/2946656/advantages-of-createelement-over-innerhtml
+https://coderwall.com/p/o9ws2g/why-you-should-always-append-dom-elements-using-documentfragments
+*/
+
+</script>
+</head>
+<body>
+See the source code.
+<div id="block"><a href="https://www.google.com/">click me</a></div>
+
+
+
+
+
+
+
+
+</body></html>

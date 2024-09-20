@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JQuery Menu Function</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+// JSON Animals/Breeds data
+var str = '[{"animal_id":4,"animal_type":"dog","animal_breeds":[{"breed_id":1,"breed_name":"Beagle"},{"breed_id":2,"breed_name":"Poodle"},{"breed_id":3,"breed_name":"Hound"},{"breed_id":4,"breed_name":"Collie"}]},{"animal_id":7,"animal_type":"cat","animal_breeds":[{"breed_id":1,"breed_name":"Tabby"},{"breed_id":2,"breed_name":"Calico"},{"breed_id":3,"breed_name":"Persian"}]},{"animal_id":11,"animal_type":"bat","animal_breeds":[{"breed_id":1,"breed_name":"Hoary"},{"breed_id":2,"breed_name":"Egyptian Fruit"},{"breed_id":3,"breed_name":"Spotted"},{"breed_id":4,"breed_name":"Leaf-nosed"}]},{"animal_id":17,"animal_type":"rat","animal_breeds":[{"breed_id":1,"breed_name":"Sewer"},{"breed_id":2,"breed_name":"Bilge"},{"breed_id":3,"breed_name":"Dirty"}]}]';
+
+var obj = JSON.parse(str);
+console.log(obj);
+
+// Create associative array to pass to conjure_menu function
+var animals_assoc = [];
+for (var i = 0; i < obj.length; i++) {
+  animals_assoc[obj[i].animal_id] = obj[i].animal_type;
+}
+
+
+$(document).ready( function() {
+  $menu = conjure_menu(animals_assoc, 'animals_menu', 'Choose Animal' , animal_choice);
+  console.log($menu.get(0));  // See DOM object (just to make shure what was created).
+  $('body').append($menu);
+});
+
+
+function animal_choice() {
+  console.log(document.getElementById('animals_menu').value);
+  
+  // Or with JQuery
+  // $("#animals_menu option:selected").val(); 
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////
+//  Required Parameters
+//    options_assoc_array
+//      array keys will become hidden values of menu options
+//      array values will become visible text of menu options
+//    id - will be set as the menu's id value AND it's name
+// Optional Parameters
+//    dummy_option_text  - dummy item whose hidden value will be -1
+//    onchange_callback_function - onchange event callback function name
+// Returns: a conjured select menu as a JQuery object
+////////////////////////////////////////////////////////////////////////////////////
+function conjure_menu(options_assoc_array, menu_id, dummy_option_text = '' , onchange_callback_function = null) {
+
+  var $menu = $("<select>", { id : menu_id , name : menu_id });  // local variables so that references to the objects
+  var $option = null;                                            // are gone after the function executes
+
+  if (dummy_option_text.trim().length) {
+    $option = $("<option>", { value : -1 }).html(dummy_option_text);
+    $menu.append($option);
+  }
+
+  if (typeof onchange_callback_function == "function") {
+    $menu.change(onchange_callback_function);
+  }
+  
+  for(var key in options_assoc_array) {
+      $option = $("<option>", { value : key}).html(options_assoc_array[key]);
+      $menu.append($option);
+  }
+
+  return $menu;
+}
+
+</script>
+
+</head>
+<body>
+  <h3>Menu created by JQuery conjure_menu() function.</body>
+</html>

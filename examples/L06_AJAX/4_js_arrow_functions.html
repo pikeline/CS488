@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Arrow Functions</title>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+<script>
+
+
+/*
+Named Function, no argument,  done two ways:
+
+function f(){
+  console.log('hello')
+}
+
+f = function(){
+  console.log('hello');
+}
+*/
+
+// Arrow Function, no argument - Same as either above (except different logging)
+f = () => {
+       console.log('Body of');
+       console.log('Arrow Function');
+       }
+
+f();  // call it
+
+// Arrow Function with argument
+g =   a => {              // could do (a) =>
+        console.log(a);
+        return a;
+        }
+
+console.log(g(1));    // call it
+
+// Arrow Function - two arguments
+h = (a,b) => {            // need () for multiple args
+          return a+b;
+          }
+
+console.log( h(1,1) );   // call it
+
+// Arrow Function, with Auto Return - same function as h above
+k = (a,b) => a+b          // cant use {} for auto return
+
+console.log( k(2,2) )   // call it
+
+// Anonymous Arrow function
+console.log( (a,b) => a+b )
+
+// How do you call an Anonymous Function?  The above doesn't call it. No values passed into (a,b).
+
+// Alternate Notation for calling a named function:  (function_name)(a,b)
+console.log( (k)(3,3) )
+
+// Alternate Notation to call a traditional anonymous function:
+console.log(  (function(a,b){ return a+b})(5,5) )
+
+// Alternate Notation to call anonymous Arrow Function:
+console.log( ((a,b) => a+b)(6,6) )
+
+// Of course, Anonymous Functions are usually called by event handlers!!!
+window.onload = () =>  console.log('DOM Ready!');   // But not JQuery objects!!
+
+// Same as above, just with traditional anonymous function
+// window.onload = function(){  console.log('DOM Ready!') };
+
+setTimeout( () => console.log('Calling Anonymous Arrow Function from Timed Event') , 3000);
+
+
+</script>
+
+</head>
+<body>
+  <h3>Everything written to console.</h3>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Runtime Environment and Event Loop</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+// Script start timestamp
+const script_start = new Date().getTime() / 1000;   // seconds since Midnight January 1 1970  (milliseconds / 1000)
+
+console.log("1) Main script started at: T=0 (script actually started at " + script_start + " seconds since 1970)");       // Number of seconds
+
+$(document).ready( () => {
+                        console.log("2) JQuery Objects Ready Callback");
+                        $('img').click(image_click_callback);
+                      } );
+
+window.onload = () => console.log("3) Onload DOM Ready Callback - placed into event queue Immediately after Main script execution");
+
+setTimeout( () =>  {
+                console.log(`4) Timeout Callback (1 second timeout). Ran at T=${new Date().getTime() / 1000 - script_start}`);
+                // backtick string will evaluate JQuery ${code inside here}
+                console.log("  Was scheduled to be called at T=1, but Main script (with 2 second delay) had to finish first");
+                console.log("  After DOM onload event, other events (timed, user triggered) can go into event queue.");
+               } , 1000);
+
+// Pause AFTER all the above event callbacks are set.
+pause(2);
+
+const script_done = new Date().getTime() / 1000;
+
+console.log("5) Main Script done at: T=" + (script_done - script_start) );
+
+// Function to call to pause the script
+function pause(duration) {
+  let pause_start = new Date().getTime() / 1000;
+  while (true) {
+    now = new Date().getTime() / 1000;
+    if ( (now - pause_start) >= duration) {
+      console.log("Pause of " + duration +" seconds completed at T=" + (now - script_start) );
+      break;
+    }
+  }
+}
+
+var clicks = 0;
+function image_click_callback() {
+  clicks++;
+  console.log("Image Click #" + clicks + ": User triggered callbacks are placed at the end of the queue in the order they they occur.");
+}
+
+</script>
+
+</head>
+<body>
+  <b>JavaScript Runtime Environment:</b> Persists as long as page is loaded - could be days.
+  <br>
+  <b>Examples:</b> V8 (Google Chrome, Opera, NodeJS), Nitro (Apple Safari), Chakra (Microsoft), SpiderMonkey (Open Source Mozilla, Firefox)
+  <br>
+  Most (all?) of these are written in C++.
+  <br>
+  <br>
+  <img src="js_runtime_environment_diagram.svg" width="295" height="271" alt="" style="float:left;margin-right:5px;">
+  <b>Event Queue:</b> First in, first out - Main execution thread in Runtime Environment
+  <br>
+  <b>Event Loop:</b> Looks every Millisecond at front of Queue for a message to execute.
+  <br>
+  <b>Message:</b> A function that needs called - events result in new messages (callback functions) being pushed onto end of Event Queue to await their turns.
+  <br>
+  <b>Call Stack:</b> Stack (first in, last out) for function executions, just like for any running process.
+  <br><br>
+  <b>Main (initial) Script Execution:</b> Top down parsing of all JS (in &lt;script&gt; tags and/or external script files).
+  Think of this as top-down execution of <code>main()</code> function in Java.
+  <br><br>
+  Initial code in Main script (think main()) is pushed into the Event Queue to execute.
+  <br>
+  After that, event callbacks start being added to the Event Queue, starting with the <code>DOMContentLoaded</code> event.
+  <br>
+  User triggered events come in order after that.
+  <br><br>
+  See source code and console to demonstrate.
+  <br>
+  Also, load this page into a new tab (with console already open) to see that the page is rendered after Main script execution (right before <code>window.onload</code> event).
+  Reloading in an existing tab is different.
+
+</body>
+</html>

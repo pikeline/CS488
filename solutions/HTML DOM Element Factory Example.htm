@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class=" pjncbmze idc0_350"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>HTML DOM Element Factory Example</title>
+  <script>
+
+    // These are global variables
+
+    var str = '[{"animal_id":4,"animal_type":"dog","animal_breeds":[{"breed_id":1,"breed_name":"Beagle"},{"breed_id":2,"breed_name":"Poodle"},{"breed_id":3,"breed_name":"Hound"},{"breed_id":4,"breed_name":"Collie"}]},{"animal_id":7,"animal_type":"cat","animal_breeds":[{"breed_id":1,"breed_name":"Tabby"},{"breed_id":2,"breed_name":"Calico"},{"breed_id":3,"breed_name":"Persian"}]},{"animal_id":11,"animal_type":"bat","animal_breeds":[{"breed_id":1,"breed_name":"Hoary"},{"breed_id":2,"breed_name":"Egyptian Fruit"},{"breed_id":3,"breed_name":"Spotted"},{"breed_id":4,"breed_name":"Leaf-nosed"}]},{"animal_id":17,"animal_type":"rat","animal_breeds":[{"breed_id":1,"breed_name":"Sewer"},{"breed_id":2,"breed_name":"Bilge"},{"breed_id":3,"breed_name":"Dirty"}]}]';
+
+    var animals = JSON.parse(str);
+    console.log(animals);
+
+    // Callback for when the DOM is fully initialized
+    ////////////////////////////////////////////////////////////////////////////////////
+    window.onload = function() {
+
+      // conjure the radio buttons for the animals
+      var input_element;        // Local Variables, so these objects which are conjured below
+      var span_element;         // are deleted from memory after the function execution
+      var txt;
+
+      var conjure_container_radios = document.getElementById('conjure_container_radios');
+
+      for (var i=0; i < animals.length; i++) {
+
+          input_element = conjure_input_element('radio' , 'animals' , animals[i].animal_id , animals[i].animal_id , 'animal_choice_callback');
+          conjure_container_radios.appendChild(input_element);
+
+          // also need the animal name description and a line break
+          span_element = document.createElement("span");
+          txt = document.createTextNode(' ' + animals[i].animal_type);
+          span_element.appendChild(txt);
+          conjure_container_radios.appendChild(span_element);
+
+          br_element = document.createElement("br");
+          conjure_container_radios.appendChild(br_element);
+      }
+    };
+
+    // Function to conjure an input element with various atttibutes as input parameters
+    ////////////////////////////////////////////////////////////////////////////////////
+    function conjure_input_element(input_type , name_value, hidden_value , id_value, onclick_callback_function_name) {
+
+      var input_element = document.createElement("input");    // local variables so that references to the objects
+
+      var type_att = document.createAttribute("type");
+      type_att.value = input_type;
+      input_element.setAttributeNode(type_att);
+
+      var name_att = document.createAttribute("name");
+      name_att.value = name_value;
+      input_element.setAttributeNode(name_att);
+
+      var value_att = document.createAttribute("value");
+      value_att.value = hidden_value;
+      input_element.setAttributeNode(value_att);
+
+      var id_att = document.createAttribute("id");
+      id_att.value = id_value;
+      input_element.setAttributeNode(id_att);
+
+      var onclick_att = document.createAttribute("onclick");
+      onclick_att.value = onclick_callback_function_name + '(this)';
+      input_element.setAttributeNode(onclick_att);
+
+      return input_element;
+    }
+
+    // Callback for choosing a radio button
+    ////////////////////////////////////////////////////////////////////////////////////
+    function animal_choice_callback(radio_button_obj) {
+
+      // deletes any checkboxes that are already in there
+      var conjure_container_checkboxes = document.getElementById('conjure_container_checkboxes');
+      conjure_container_checkboxes.innerHTML = "";
+
+      // see if we have the correct animal_id
+      var chosen_animal_id = radio_button_obj.value;
+      console.log("Chosen Animal ID: " + chosen_animal_id);
+
+      // find the breeds array for that animal
+      for (var i = 0; i < animals.length; i++) {
+        if ( animals[i].animal_id == chosen_animal_id) {
+           var breeds = animals[i].animal_breeds;
+        }
+      }
+
+      // conjure the checkboxes for those breeds
+      var input_element;
+      var span_element;
+      var txt;
+
+      for (i = 0; i < breeds.length; i++) {
+        input_element = conjure_input_element('checkbox' , '' , breeds[i].breed_id , '' , 'breed_choice_callback');
+        conjure_container_checkboxes.appendChild(input_element);
+
+          // now need the breed name description and a line break
+          span_element = document.createElement("span");
+          txt = document.createTextNode(' ' + breeds[i].breed_name);
+          span_element.appendChild(txt);
+          conjure_container_checkboxes.appendChild(span_element);
+
+          br_element = document.createElement("br");
+          conjure_container_checkboxes.appendChild(br_element);
+      }
+    }
+
+    // Callback for clicking the checkboxes (just to see the chosen breed_id values)
+    ////////////////////////////////////////////////////////////////////////////////////
+    function breed_choice_callback(checkbox_obj) {
+      var chosen_breed_id = checkbox_obj.value;
+      if (checkbox_obj.checked) {
+        console.log("Breed Chosen: " + chosen_breed_id);
+      }
+      else {
+        console.log("Breed Un-Chosen: " + chosen_breed_id);
+      }
+    }
+
+    // Callback for the clear button
+    ////////////////////////////////////////////////////////////////////////////////////
+    function clear_animal_choice() {
+
+      // uncheck the radio buttons
+      for (var i=0; i < animals.length; i++) {
+        console.log(animals[i].animal_id);
+        document.getElementById(animals[i].animal_id).checked = false;
+      }
+
+      // wipe the checkbox container
+      document.getElementById('conjure_container_checkboxes').innerHTML = "";  // deletes any checkboxes that are already in there
+    }
+
+
+  </script>
+</head>
+<body>
+
+  <button onclick="clear_animal_choice()">Reset - Clear Animal Choice</button>
+
+  <br><br>
+
+  <div id="conjure_container_radios"><input type="radio" name="animals" value="4" id="4" onclick="animal_choice_callback(this)"><span> dog</span><br><input type="radio" name="animals" value="7" id="7" onclick="animal_choice_callback(this)"><span> cat</span><br><input type="radio" name="animals" value="11" id="11" onclick="animal_choice_callback(this)"><span> bat</span><br><input type="radio" name="animals" value="17" id="17" onclick="animal_choice_callback(this)"><span> rat</span><br></div>
+  <br><br>
+  <div id="conjure_container_checkboxes"></div>
+
+
+
+</body></html>

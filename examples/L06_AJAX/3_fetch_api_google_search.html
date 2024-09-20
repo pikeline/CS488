@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fetch API</title>
+  <!--
+  Don't need JQuery - Fetch API built into browsers.
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  -->
+
+<script>
+/*
+  https://rapidapi.com/apigeek/api/google-search3/
+
+Freemium - Free up to a certain amount of hits, but you have to sign up to get an API key
+*/
+
+
+const options = {
+	method: 'GET',
+	headers: {
+		'X-User-Agent': 'desktop',
+		'X-Proxy-Location': 'USA',
+		'X-RapidAPI-Key': '8ad29bcafemsh7197ae7d1d56c90p1447a3jsnc934f8fbc7dc',
+		'X-RapidAPI-Host': 'google-search3.p.rapidapi.com'
+	}
+};
+
+/*
+The cryptic version of the code that https://rapidapi.com gives you
+
+fetch('https://google-search3.p.rapidapi.com/api/v1/search/q=elon+musk', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
+
+A bit more understandable version:
+*/
+
+fetch('https://google-search3.p.rapidapi.com/api/v1/search/q=elon+musk', options)
+	.then(first_response => {
+                            console.log("First Response: Preliminary Handshake");    // HTTP header: OPTIONS method
+                            console.log(first_response);                             // body field says "ReadableStream" available
+                            return first_response.json();  // Second request to get the JSON stream
+                         }
+	      )
+	.then(second_response => {
+                        console.log("Second Response: JSON Payload");   // HTTP header: GET method
+                        console.log(second_response);
+                    }
+	      )
+	.catch(err => console.error(err));
+
+/*
+Don't need to wait - response callbacks don't get added to event Queue till after the page is fully loaded.
+
+window.onload( function() {});
+
+$(document).ready( function() {});
+*/
+
+</script>
+</head>
+<body>
+  Testing the google-search3 API.  See Console.
+</body>
+</html>

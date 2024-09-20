@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html class=" hsohdecf idc0_350"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>JSON Objects Practice</title>
+  <script>
+
+
+var str  = `{"people": [
+                  {
+                      "MainId": 1111,
+                      "firstName": "Sherlock",
+                      "lastName": "Homes",
+                      "categories": [
+                          {
+                              "CategoryID": 1,
+                              "CategoryName": "Mystery"
+                          },
+                          {
+                              "CategoryID": 2,
+                              "CategoryName": "Crime"
+                          }
+                      ]
+                  },
+                  {
+                      "MainId": 122,
+                      "firstName": "James",
+                      "lastName": "Watson",
+                      "categories": [
+                          {
+                              "CategoryID": 3,
+                              "CategoryName": "Doctor"
+                          }
+                      ]
+                  }
+              ],
+              "animals": ["dog","cat","rat"],
+              "letters": {"a":"x","b":"y","c":"z"}
+            }`;
+
+
+var obj = JSON.parse(str);
+console.log( obj );
+
+// Exercise:
+// In each case, supply the object/array references that logs the same thing.
+
+console.log( "cat" );
+console.log( obj.animals[1] );
+console.log( 'z' );
+console.log( obj.letters.c );
+console.log( "Sherlock" );
+console.log( obj.people[0].firstName );
+console.log( "Doctor" );
+console.log( obj.people[1].categories[0].CategoryName );
+
+  </script>
+</head>
+<body>
+  <br>
+
+  Download this and view in your code editor.
+  <br>
+  All script output is written to the JavaScript console.
+
+
+
+</body></html>

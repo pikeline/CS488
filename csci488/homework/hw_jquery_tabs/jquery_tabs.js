@@ -36,11 +36,11 @@ The default active tab:
 
   $button.click();
 */
-
+"use strict";
 
 $(document).ready(function () {
   // put your code in here to ensure all the JQuery objects exist when your code runs.
-  $('p[tab-content-for').each(function() {
+  $('p[tab-content-for]').each(function() {
     $(this).addClass("tab_content");
   });
   $('div[tab-controls]').each(function() {

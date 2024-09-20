@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html class=" gohnqiprsh idc0_350"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Method Chaining</title>
+  <script src="Method%20Chaining_files/jquery.min.js"></script>
+
+<script>
+
+////////////////////////////////////////////////
+// Rut Ro
+//let y = 1;
+//let y = 2;
+
+////////////////////////////////////////////////
+// Even worse - why?
+//const x = 1;
+//const x = 2;
+
+////////////////////////////////////////////////
+// ok, because of "variable hoisting" : https://www.w3schools.com/js/js_hoisting.asp
+var z = 1;
+var z = 2;
+
+
+
+const jsonData = '[{"animal_id":4,"animal_type":"dog","animal_breeds":[{"breed_id":1,"breed_name":"Beagle"},{"breed_id":2,"breed_name":"Poodle"},{"breed_id":3,"breed_name":"Hound"},{"breed_id":4,"breed_name":"Collie"}]},{"animal_id":7,"animal_type":"cat","animal_breeds":[{"breed_id":1,"breed_name":"Tabby"},{"breed_id":2,"breed_name":"Calico"},{"breed_id":3,"breed_name":"Persian"}]},{"animal_id":11,"animal_type":"bat","animal_breeds":[{"breed_id":1,"breed_name":"Hoary"},{"breed_id":2,"breed_name":"Egyptian Fruit"},{"breed_id":3,"breed_name":"Spotted"},{"breed_id":4,"breed_name":"Leaf-nosed"}]},{"animal_id":17,"animal_type":"rat","animal_breeds":[{"breed_id":1,"breed_name":"Sewer"},{"breed_id":2,"breed_name":"Bilge"},{"breed_id":3,"breed_name":"Dirty"}]}]';
+
+const animals = JSON.parse(jsonData);
+
+animals.forEach(animal => {                       // What's the arrow?
+    
+    // Why no error - can't redeclare let
+    let radio = document.createElement('input');
+    radio.type = 'radio';      
+    radio.name = 'animals';
+    radio.value = animal.animal_id;
+    console.log(animal.animal_id);
+    
+    //  why none of this stuff above?
+    // type_att = document.createAttribute("type");
+    // type_att.value = 'radio';
+    // input_element.setAttributeNode(type_att);
+});
+
+// WTF?
+let found = animals.find(animal => animal.animal_id == '7');
+console.log(found.animal_type);
+
+
+</script>
+<style>
+
+</style>
+</head>
+<body>
+ 
+
+
+
+
+</body></html>
