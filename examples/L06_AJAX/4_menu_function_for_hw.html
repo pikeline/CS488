@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JQuery Menu Function</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+// JSON Animals/Breeds data
+var str = '[{"animal_id":4,"animal_type":"dog","animal_breeds":[{"breed_id":1,"breed_name":"Beagle"},{"breed_id":2,"breed_name":"Poodle"},{"breed_id":3,"breed_name":"Hound"},{"breed_id":4,"breed_name":"Collie"}]},{"animal_id":7,"animal_type":"cat","animal_breeds":[{"breed_id":1,"breed_name":"Tabby"},{"breed_id":2,"breed_name":"Calico"},{"breed_id":3,"breed_name":"Persian"}]},{"animal_id":11,"animal_type":"bat","animal_breeds":[{"breed_id":1,"breed_name":"Hoary"},{"breed_id":2,"breed_name":"Egyptian Fruit"},{"breed_id":3,"breed_name":"Spotted"},{"breed_id":4,"breed_name":"Leaf-nosed"}]},{"animal_id":17,"animal_type":"rat","animal_breeds":[{"breed_id":1,"breed_name":"Sewer"},{"breed_id":2,"breed_name":"Bilge"},{"breed_id":3,"breed_name":"Dirty"}]}]';
+
+var animals = JSON.parse(str);
+
+// Make an associative array with entries like animals_menu_data['4'] = 'cat';
+var animals_menu_data = [];  // empty array
+animals.forEach( function(animal) {
+  animals_menu_data[animal.animal_id] = animal.animal_type;
+});
+
+
+////////////////////////////////////////////////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Slap a few menus into the page using various calls of the conjure function
+
+  var animals_menu1 = conjure_menu(animals_menu_data, 'animals_menu1', 'Choose Animal', animal_choice_callback);
+  var animals_menu2 = conjure_menu(animals_menu_data, 'animals_menu2', 'Choose Animal');
+  var animals_menu3 = conjure_menu(animals_menu_data, 'animals_menu3');
+  var animals_menu4 = conjure_menu(animals_menu_data, 'animals_menu4', '', animal_choice_callback);
+
+  document.getElementById('conjure_container').appendChild(animals_menu1);
+  document.getElementById('conjure_container').appendChild(animals_menu2);
+  document.getElementById('conjure_container').appendChild(animals_menu3);
+  document.getElementById('conjure_container').appendChild(animals_menu4);
+});
+
+
+////////////////////////////////////////////////////////////////////////////////////
+function animal_choice_callback(e) {
+  // just to give a tangible result
+  console.log(e.target.value);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////
+// Returns reference to a conjured select menu object
+// Required Parameters:
+//    menu_options - Associative Array with entries like:  menu_options['option_value'] = 'option_text'
+//                   As a data structure, a menu is basically just an Associative Array
+//    menu_id
+//
+// Optional Parameters:
+//    dummy_text - for a dummy menu item
+//    onchange_callback_function
+//
+// Note:
+//
+function conjure_menu(menu_options, menu_id, dummy_text = '', onchange_callback_function = null) {
+
+  var select_menu = document.createElement("select");
+  select_menu.setAttribute("id",menu_id);
+  select_menu.setAttribute("name",menu_id);
+
+  var option = null;   // to reuse for all the options to create
+
+  // possibly  set the dummy option
+  if (dummy_text != '') {
+    option = document.createElement("option")
+    option.setAttribute("value",'');
+    option.textContent = dummy_text;
+
+    select_menu.appendChild(option);
+  }
+
+  menu_options.forEach( function(text, value) {
+    option = document.createElement("option");
+    option.setAttribute("value",value);
+    option.textContent = text;
+
+    select_menu.appendChild(option);
+  });
+
+  // Finally set the event handler callback, if called for
+  if ( typeof(onchange_callback_function) == 'function' ) {
+    select_menu.onchange = onchange_callback_function;
+  }
+
+  return select_menu;
+}
+
+
+</script>
+
+</head>
+<body id="conjure_container">
+  <h3>Menu created by JQuery conjure_menu() function.</h3>
+
+</body>
+</html>

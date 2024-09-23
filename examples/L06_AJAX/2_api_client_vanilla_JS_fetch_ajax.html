@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fetch API</title>
+  <!--
+  Don't need JQuery - Fetch API is Vanilla Javascript built into browsers.
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  -->
+
+<script>
+
+  ///////////////////////////////////////////////////////////////////////////////////////
+   // Event handler for button.
+   ///////////////////////////////////////////////////////////////////////////////////////
+   function ajax_call() {
+
+      var animal_id = document.getElementById("animal_id").value;  // selected menu item
+
+
+      if ( animal_id == -1 ) {
+        document.getElementById('mydiv').innerHTML = '';
+      }
+      else {
+        // do the AJAX api call
+        var api_call_url = 'https://csci.lakeforest.edu/knuckles/csci488/api_examples/animal_breeds_api.php?animal_id='+animal_id;
+        console.log(api_call_url);
+
+        /*
+        There are a couple different versions of the basic fetch api code at W3Schools.
+
+        https://www.w3schools.com/js/js_api_fetch.asp
+
+        I added some extra stuff to the code below to help show what's really going on
+        */
+
+        fetch(api_call_url)
+        .then(handshake_response => {
+                console.log("First Response: Preliminary Handshake");
+                console.log(handshake_response);   // body field says "ReadableStream" available
+                return handshake_response.json();  // Second request to get the JSON stream
+             }
+        )
+        .then(json_response => {
+                console.log("Second Response: JSON Payload");   // HTTP header: GET method
+                console.log(json_response);
+
+                var breeds_display = '';
+                json_response.forEach( breed => {
+                  breeds_display = breeds_display + breed.breed_name + '<br>';
+                });
+                document.getElementById('mydiv').innerHTML = breeds_display;
+              }
+        )
+        .catch(err => console.error(err));
+      }
+   }
+
+
+</script>
+</head>
+<body>
+  <h4>AJAX Example using the Vanilla JS Fetch API.</h4>
+  This example makes Asynchronous (page not reloaded) AJAX requests to a very simple API that returns JSON data which is then inserted into the page.
+  <br><br>
+  <select id="animal_id">
+    <option value="-1">Dummy Option</option>
+    <option value="4">dog</option>
+    <option value="7">cat</option>
+    <option value="11">bat</option>
+    <option value="17">rat</option>
+  </select>
+  <br><br>
+  <button type="button" onclick="ajax_call()">Send the menu choice to the API to get JSON data.</button>
+  <br><br>
+  <div id="mydiv"></div>
+</body>
+</html>
