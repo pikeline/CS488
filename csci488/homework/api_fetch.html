@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API fetch HW</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        const base_url = "https://csci.lakeforest.edu/knuckles/csci488/api_examples/shakespeare_api.php";
+        var current_work_id = null;
+
+        function conjure_menu(menu_options, menu_id, dummy_text = '', onchange_callback_function = null) {
+
+            var select_menu = document.createElement("select");
+            select_menu.setAttribute("id", menu_id);
+            select_menu.setAttribute("name", menu_id);
+
+            var option = null;   // to reuse for all the options to create
+
+            // possibly  set the dummy option
+            if (dummy_text != '') {
+                option = document.createElement("option")
+                option.setAttribute("value", '');
+                option.textContent = dummy_text;
+
+                select_menu.appendChild(option);
+            }
+
+            Object.entries(menu_options).forEach(function ([value, text]) {
+                option = document.createElement("option");
+                option.setAttribute("value", value);
+                option.textContent = text;
+
+                select_menu.appendChild(option);
+            });
+
+            // Finally set the event handler callback, if called for
+            if (typeof (onchange_callback_function) == 'function') {
+                select_menu.onchange = onchange_callback_function;
+            }
+
+            return select_menu;
+        }
+        function init() {
+            fetch(base_url)
+                .then(response => { return response.json(); })
+                .then(inc_json => {
+                    const works = inc_json;
+                    const options = get_work_options(works);
+                    const menu = conjure_menu(options, "works", "Choose a work", onWorkChange);
+                    $('#container_works').html('');
+                    $('#container_works').append(menu);
+                })
+                .catch(error => { console.log(error); });
+        }
+        function get_work_options(items) {
+            var ret = [];
+            items.forEach((item) => {
+                ret[`${item.work_id}`] = item.work_title + ` [${item.work_genre}]`;
+            });
+            return ret;
+        }
+        function onWorkChange() {
+            current_work_id = this.value;
+            $('#container_scenes').html('');
+            $('#container_lines').html('');
+            if (current_work_id == "") {
+                return;
+            }
+            fetch(`${base_url}?work=${current_work_id}`)
+                .then(response => { return response.json(); })
+                .then(inc_json => {
+                    const scenes = inc_json;
+                    const options = get_scene_options(scenes);
+                    const menu = conjure_menu(options, "scenes", "Choose a scene", onSceneChange);
+                    $('#container_scenes').html('');
+                    $('#container_scenes').append(menu);
+                })
+        }
+        function get_scene_options(scenes) {
+            var ret = [];
+            scenes.forEach((item) => {
+                ret[`${item.scene_act}:${item.scene_scene}`] = `Act ${item.scene_act} : Scene ${item.scene_scene} - ${item.scene_location}`;
+            });
+            return ret;
+        }
+        function onSceneChange() {
+            const scene = this.value;
+            $('#container_lines').html('');
+            if (scene == "") {
+                return;
+            }
+            const [act, sceneNumber] = getActAndScene(scene);
+
+            fetch(`${base_url}?work=${current_work_id}&act=${act}&scene=${sceneNumber}`)
+                .then(response => { return response.json(); })
+                .then(inc_json => {
+                    const lines = inc_json;
+                    var display = '';
+                    lines.paragraphs.forEach(line => {
+                        display += `[${line[1]}] ${line[2]}<br>`;
+                    });
+                    $('#container_lines').html(display);
+                })
+        }
+        function getActAndScene(scene) {
+            const [act, sceneNum] = scene.split(':');
+            return [act, sceneNum];
+        }
+        window.onload = () => {
+            init();
+        }
+    </script>
+</head>
+
+<body>
+    <div id="container_works">
+    </div>
+    <div id="container_scenes">
+    </div>
+    <div id="container_lines">
+    </div>
+</body>
+
+</html>

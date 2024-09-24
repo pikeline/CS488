@@ -24,5 +24,32 @@
     The server processes the JSON object and sends a response back to the client<br>
     The client processes the response and updates the page<br>
     
+    <br>
+    Sidenote: jquery siblings() = parent().children()<br>
+
+    <h1>More AJAX</h1>
+    Loading a webpage begins with a synchronous transaction<br>
+    The browser sends a request to the server, and the server sends a response back<br>
+    If the user fires an event, the browser sends another request to the server asynchronously<br>
+    This means the user can interact with the page while the server is processing the request<br>
+    The server sends a response back to the client as JSON, and the client updates the page<br>
+
+    <h1>Arrow functions</h1>
+    Arrow functions are a shorthand way to write functions<br>
+    They are anonymous functions<br>
+    () => {} is the syntax<br>
+    It is the same as function() {}<br>
+    Arrow functions do not have their own this<br>
+    They inherit the this from the parent scope<br>
+    You don't always have to use return with arrow functions<br>
+    If you have a single line of code, you can omit the curly braces<br>
+    If you have a single parameter, you can omit the parentheses<br>
+    For example: x => x * x<br>
+    That is the same as function(x) { return x * x; }<br>
+
+    <h1>Associative arrays</h1>
+    Associative arrays are objects in JavaScript<br>
+    In Python, they are called dictionaries<br>
+    
 </body>
 </html>
