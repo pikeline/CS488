@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('#http input[type="radio"]').each(function () {
+                $(this).change(() => {
+                    $('form').attr('method', $(this).val());
+                });
+            });
+            $('#http input[type="radio"]')[0].click();//post
+        });
+    </script>
+</head>
+
+<body>
+    <div id="http">
+        <h3>Get or Post toggle</h3>
+        <input type="radio" name="http" value="post">
+        <label for="post">Post</label>
+        <input type="radio" name="http" value="get">
+        <label for="get">Get</label>
+    </div>
+    <h3>Form</h3>
+    <form action="../php/echo.php">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age">
+        <br><br>
+
+        <label>Who would win:</label>
+        <br>
+        <input type="checkbox" id="bear" name="winner" value="bear">
+        <label for="bear">Bear</label><br>
+        <input type="checkbox" id="gorilla" name="winner" value="gorilla">
+        <label for="gorilla">Gorilla</label><br>
+        <input type="checkbox" id="human" name="winner" value="human">
+        <label for="checkbox3">Human</label>
+        <br><br>
+
+        <label for="fear">How scary?:</label>
+        <input type="range" id="fear" name="fear" min="0" max="100">
+        <br><br>
+
+        <label for="arena">Arena:</label>
+        <select id="arena" name="arena">
+            <option value="city">City</option>
+            <option value="woods">Woods</option>
+            <option value="jungle">Jungle</option>
+        </select>
+        <br><br>
+
+        <label for="favorite">Favorite to win (can choose multiple):</label>
+        <select id="favorite" name="favorite" multiple>
+            <option value="fav_bear">Bear</option>
+            <option value="fav_gorilla">Gorilla</option>
+            <option value="fav_human">Human</option>
+        </select>
+        <br><br>
+
+        <label>Most important factor:</label><br>
+        <input type="radio" id="factor1" name="factor" value="body">
+        <label for="factor1">Body</label><br>
+        <input type="radio" id="factor2" name="factor" value="mind">
+        <label for="factor2">Mind</label>
+        <br><br>
+
+        <label>Are you sure?</label><br>
+        <input type="radio" id="confidence_y" name="boolconfidence" value="1">
+        <label for="confidence_y">Yes</label><br>
+        <input type="radio" id="confidence_n" name="boolconfidence" value="0">
+        <label for="confidence_n">No</label>
+        <br><br>
+
+        <label for="explanation">Why:</label><br>
+        <textarea id="explanation" name="explanation" rows="4" cols="50"></textarea>
+        <br><br>
+
+        <input type="hidden" name="hidden" value="hidden">
+
+        <button type="reset">Reset</button>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>
