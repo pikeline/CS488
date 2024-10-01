@@ -1,4 +1,4 @@
-<?
+<?php
 // $_GET and $_POST are built-in PHP SuperGlobals that handle those kind of form submissions, respectively.
 //The line below merges both into one array so that this script will handle both GET and POST form submissions.
 
@@ -23,13 +23,13 @@ $submitted_form_data = array_merge($_GET, $_POST);
       <th>Submitted Value</th>
     </tr>
 
-    <? foreach ($submitted_form_data as $key => $value) { ?>
+    <?php foreach ($submitted_form_data as $key => $value) { ?>
       <tr>
-        <td><?= $key ?></td>
+        <td><?php $key ?></td>
         <td>&nbsp;</td>
-        <td><?= $value ?></td>
+        <td><?php $value ?></td>
       </tr>
-    <? } ?>
+    <?php } ?>
 
   </table>
   The checkboxes that aren't submitted are the ones that are not checked. This is because there is no reason to send unchecked data to the server. It'll make a shorter query string.<br>
