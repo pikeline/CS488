@@ -43,11 +43,11 @@
 
         Who would win:
         <br>
-        <input type="checkbox" id="bear" name="winner" value="bear">
+        <input type="checkbox" id="bear" name="winner[]" value="bear">
         <label for="bear">Bear</label><br>
-        <input type="checkbox" id="gorilla" name="winner" value="gorilla">
+        <input type="checkbox" id="gorilla" name="winner[]" value="gorilla">
         <label for="gorilla">Gorilla</label><br>
-        <input type="checkbox" id="human" name="winner" value="human">
+        <input type="checkbox" id="human" name="winner[]" value="human">
         <label for="checkbox3">Human</label>
         <br><br>
 
@@ -64,10 +64,10 @@
         <br><br>
 
         <label for="favorite">Favorite to win (can choose multiple):</label>
-        <select id="favorite" name="favorite" multiple>
-            <option value="fav_bear">Bear</option>
-            <option value="fav_gorilla">Gorilla</option>
-            <option value="fav_human">Human</option>
+        <select id="favorite" name="favorite[]" multiple>
+            <option value="bear">Bear</option>
+            <option value="gorilla">Gorilla</option>
+            <option value="human">Human</option>
         </select>
         <br><br>
 
@@ -79,9 +79,9 @@
         <br><br>
 
         Are you sure?<br>
-        <input type="radio" id="confidence_y" name="boolconfidence" value="1">
+        <input type="radio" id="confidence_y" name="confidence" value="yes">
         <label for="confidence_y">Yes</label><br>
-        <input type="radio" id="confidence_n" name="boolconfidence" value="0">
+        <input type="radio" id="confidence_n" name="confidence" value="no">
         <label for="confidence_n">No</label>
         <br><br>
 
