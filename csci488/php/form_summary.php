@@ -1,7 +1,19 @@
 <?php
 $submitted_form_data = array_merge($_GET, $_POST);
-$order = array("name", "email", "age", "winner", "fear", "arena", "favorite", "factor", "confidence", "explanation", "hidden");//order of php array, change this to change order of table
-?>
+$order = array(
+    "name" => "Name",
+    "email" => "Email",
+    "age" => "Age",
+    "winner" => "Winner",
+    "fear" => "Fear",
+    "arena" => "Arena",
+    "favorite" => "Favorite",
+    "factor" => "Most important factor",
+    "confidence" => "Confident",
+    "explanation" => "Why",
+    "hidden" => "Hidden"
+)//order of php array, change this to change order of table
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,35 +27,25 @@ $order = array("name", "email", "age", "winner", "fear", "arena", "favorite", "f
     <table>
         <th>
             <tr>
-                <?php foreach ($order as $key) { ?>
-                    <td><?php echo ucwords($key) ?></td>
+                <?php foreach ($order as $key => $value) { ?>
+                    <td><?php echo ucwords($value) ?></td>
                 <?php } ?>
             </tr>
         </th>
         <tr>
-            <td><?php echo $submitted_form_data['name'] ?></td>
-            <td><?php echo $submitted_form_data['email'] ?></td>
-            <td><?php echo $submitted_form_data['age'] ?></td>
-            <td><?php
-            if (isset($submitted_form_data['winner'])) {
-                foreach ($submitted_form_data['winner'] as $winner) {
-                    echo $winner . "<br>";
-                }
-            }
-            ?></td>
-            <td><?php echo $submitted_form_data['fear'] ?></td>
-            <td><?php echo $submitted_form_data['arena'] ?></td>
-            <td><?php
-            if (isset($submitted_form_data['favorite'])) {
-                foreach ($submitted_form_data['favorite'] as $favorite) {
-                    echo $favorite . "<br>";
-                }
-            }
-            ?></td>
-            <td><?php echo $submitted_form_data['factor'] ?></td>
-            <td><?php echo $submitted_form_data['confidence'] ?></td>
-            <td><?php echo $submitted_form_data['explanation'] ?></td>
-            <td><?php echo $submitted_form_data['hidden'] ?></td>
+            <?php foreach ($order as $key => $value) { ?>
+                <td><?php
+                if ($key == "winner" || $key == "favorite") {
+                    if (isset($submitted_form_data[$key])) {
+                        foreach ($submitted_form_data[$key] as $val) { ?>
+                                <?php echo $val ?><br>
+                            <?php }
+                    }
+                } else { ?>
+                        <?php echo $submitted_form_data[$key] ?>
+                    <?php } ?>
+                </td>
+            <?php } ?>
     </table>
 </body>
 
