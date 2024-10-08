@@ -20,7 +20,7 @@ $result = $mysqli->query($query);
 if ($result->num_rows > 0) {
     echo "$animal_name already exists in the database, not added!";
 }
-else{
+elseif ($animal_name != ""){
     $query = "INSERT INTO cherepanov_animals (animal_id, animal_name, animal_timestamp, animal_datetime, animal_int) VALUES (NULL,'$animal_name', '$datetime','$datetime' , $now)";
     $result = $mysqli->query($query);
     if ($result) {
@@ -29,6 +29,9 @@ else{
     else {
         echo "Error adding $animal_name to the database, please try again!";
     }
+}
+else {
+	echo "No animal name provided, please try again!";
 }
 
 /*
