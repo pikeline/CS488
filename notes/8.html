@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUDL</title>
+</head>
+<body>
+    CRUDL - Create, Read, Update, Delete, List<br>
+    Create - INSERT INTO table (column1, column2, ...) VALUES (value1, value2, ...)<br>
+    Read - SELECT * FROM table WHERE column = value<br>
+    Update - UPDATE table SET column1 = value1, column2 = value2 WHERE column = value<br>
+    Delete - DELETE FROM table WHERE column = value<br>
+    List - SELECT * FROM table<br>
+
+    The form data should have a hidden input field  called task, which passes a value called save, delete, edit, or blank(default) and a field called name with a value of id, which is the primary key if it exists (empty if new, existing if upgrade). In the serverside, there is a switch statement that checks the value of task and performs the appropriate action.<br>
+    save cleans the data, then either inserts or updates the data in the database.<br>
+    Finally, feedback is given.<br>
+</body>
+</html>
