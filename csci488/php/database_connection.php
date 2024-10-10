@@ -6,8 +6,16 @@ define('DB_PASSWORD','writeCode24');
 define('DB_DATABASE','csci488_fall24');
 
 $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+
+//next time: add a message instead of echoing, otherwise it prints before the html
+//output here
+//<!doctype html>
+//webpage still renders, but the message is at the top of the page
+//<?= is shortcut for <?php echo
+$message = "";
+
 if ($mysqli->connect_errno) {
-    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    $message = "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     exit;
 }
 
@@ -18,20 +26,20 @@ $query = "SELECT * FROM cherepanov_animals WHERE animal_name = '$animal_name'";
 $result = $mysqli->query($query);
 
 if ($result->num_rows > 0) {
-    echo "$animal_name already exists in the database, not added!";
+    $message = "$animal_name already exists in the database, not added!";
 }
 elseif ($animal_name != ""){
     $query = "INSERT INTO cherepanov_animals (animal_id, animal_name, animal_timestamp, animal_datetime, animal_int) VALUES (NULL,'$animal_name', '$datetime','$datetime' , $now)";
     $result = $mysqli->query($query);
     if ($result) {
-        echo "$animal_name added to the database";
+        $message = "$animal_name added to the database";
     }
     else {
-        echo "Error adding $animal_name to the database, please try again!";
+        $message = "Error adding $animal_name to the database, please try again!";
     }
 }
 else {
-	echo "No animal name provided, please try again!";
+	$message = "No animal name provided, please try again!";
 }
 
 /*
@@ -53,7 +61,9 @@ $num_rows =  $result->num_rows;
 		<title>Basic Database Code</title>
 	</head>
 	<body>
-
+		<div>
+			<?=$message?>
+		</div>
 		<br /><br />
 		Database table listing.
 		<br /><br />
