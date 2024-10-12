@@ -16,5 +16,16 @@
     The form data should have a hidden input field  called task, which passes a value called save, delete, edit, or blank(default) and a field called name with a value of id, which is the primary key if it exists (empty if new, existing if upgrade). In the serverside, there is a switch statement that checks the value of task and performs the appropriate action.<br>
     save cleans the data, then either inserts or updates the data in the database.<br>
     Finally, feedback is given.<br>
+
+    <h1>Why post?</h1>
+    If you refresh a get string, it will resubmit the data. If you refresh a post string, it will not resubmit the data. This is why post is used for forms.<br>
+    <h1>Why use a hidden input field?</h1>
+    It is a way to pass data that the user cannot see. It is used to pass the task and the id of the data.<br>
+    It is also useful to pass data that is not user input, such as the date and time of the submission.<br>
+    In addition, spreading code across pages is useful for compartmentalizing code.<br>
+    <h1>MVC</h1>
+    Model View Controller is a way to organize code. The model is the database, the view is the user interface, and the controller is the code that connects the two.<br>
+    For example, the controller can be a php file that connects to the database and the view can be an html file that displays the data.<br>
+    Form data is passed to a controller.php file, which then updates the model and then returns to the view.<br>
 </body>
 </html>

@@ -15,7 +15,7 @@ $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 $message = "";
 
 if ($mysqli->connect_errno) {
-    $message = "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    $message = "Failed to connect to MySQL: ( $mysqli->connect_errno) $mysqli->connect_error";
     exit;
 }
 
