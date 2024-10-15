@@ -71,7 +71,7 @@ class lib {
 
        foreach ($array as $key=>$value) {
             $menu .= "<option value=\"$key\" ";
-            if ( (!is_array($selected) && $value==$selected) || (is_array($selected) && in_array($value,$selected)) ) {
+            if ( (!is_array($selected) && $key==$selected) || (is_array($selected) && in_array($key,$selected)) ) {
                 $menu .= "selected";
             }
             $menu .= ">$value</option>\n";

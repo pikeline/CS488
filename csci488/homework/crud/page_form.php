@@ -2,7 +2,7 @@
 require 'init.php'; // database connection, etc
 
 $task = $get_post['task'];
-$sChecked = 'checked="yes"';
+$sChecked = 'checked';
 $confidence_options = array(
     "1" => "Yes",
     "0" => "No"
@@ -119,7 +119,7 @@ switch ($task) {
         $scariness = $row['scariness'];
         $arena = $row['arena'];
         $favorite = json_decode($row['favorite'], true);
-        $factor = json_decode($row['factor'], true);
+        $factor = htmlspecialchars($row['factor']);
         $confidence = $row['confidence'];
         $explanation = htmlspecialchars($row['explanation']);
 
@@ -193,17 +193,11 @@ switch ($task) {
 
         Who would win:
         <br>
-        <input type="checkbox" id="bear" name="winner[]" value="bear" <? if (in_array("bear", $winner)) {
-            echo $sChecked;
-        } ?>>
+        <input type="checkbox" id="bear" name="winner[]" value="bear" <?=(in_array("bear", $winner) ? $sChecked : "") ?>>
         <label for="bear">Bear</label><br>
-        <input type="checkbox" id="gorilla" name="winner[]" value="gorilla" <? if (in_array("gorilla", $winner)) {
-            echo $sChecked;
-        } ?>>
+        <input type="checkbox" id="gorilla" name="winner[]" value="gorilla" <?=(in_array("gorilla", $winner) ? $sChecked : "") ?>>
         <label for="gorilla">Gorilla</label><br>
-        <input type="checkbox" id="human" name="winner[]" value="human" <? if (in_array("human", $winner)) {
-            echo $sChecked;
-        } ?>>
+        <input type="checkbox" id="human" name="winner[]" value="human" <?=(in_array("human", $winner) ? $sChecked : "") ?>>
         <label for="human">Human</label>
         <br><br>
 
@@ -221,34 +215,33 @@ switch ($task) {
         <br><br>
 
         Most important factor:<br>
-        <input type="radio" id="factor1" name="factor" value="strength" <? if (in_array("strength", $factor)) {
+        <input type="radio" id="factor1" name="factor" value="strength" <? if ("strength" == $factor) {
             echo $sChecked;
         } ?>>
         <label for="factor1">Strength</label><br>
-        <input type="radio" id="factor2" name="factor" value="intelligence" <? if (in_array("intelligence", $factor)) {
+        <input type="radio" id="factor2" name="factor" value="intelligence" <? if ("intelligence" == $factor) {
             echo $sChecked;
         } ?>>
         <label for="factor2">Intelligence</label><br>
-        <input type="radio" id="factor3" name="factor" value="agility" <? if (in_array("agility", $factor)) {
+        <input type="radio" id="factor3" name="factor" value="agility" <? if ("agility" == $factor) {
             echo $sChecked;
         } ?>>
         <label for="factor2">Agility</label>
         <br><br>
 
         Are you sure?<br>
-        <input type="radio" id="confidence_y" name="confidence" value="1">
+        <input type="radio" id="confidence_y" name="confidence" value="1"<?= ("1" == $confidence ? $sChecked : "") ?>>
         <label for="confidence_y">Yes</label><br>
-        <input type="radio" id="confidence_n" name="confidence" value="0">
+        <input type="radio" id="confidence_n" name="confidence" value="0" <?= ("0" == $confidence ? $sChecked : "") ?>>
         <label for="confidence_n">No</label>
         <br><br>
 
         <label for="explanation">Why:</label><br>
-        <textarea id="explanation" name="explanation" rows="4" cols="50" value="<?= $explanation ?>"></textarea>
+        <textarea id="explanation" name="explanation" rows="4" cols="50"><?= $explanation ?></textarea>
         <br><br>
 
         <input type="hidden" name="hidden" value="hidden">
 
-        <button type="reset">Reset</button>
         <button type="submit">Submit</button>
     </form>
 
