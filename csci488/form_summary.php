@@ -5,14 +5,13 @@ $order = array(
     "email" => "Email",
     "age" => "Age",
     "winner" => "Winner",
-    "fear" => "Fear",
+    "scariness" => "Scariness",
     "arena" => "Arena",
     "favorite" => "Favorite",
-    "factor" => "Most important factor",
-    "confidence" => "Confident",
+    "factor" => "Most Important Factor",
+    "confidence" => "Confident?",
     "explanation" => "Why",
-    "hidden" => "Hidden"
-)//order of php array, change this to change order of table
+);//order of php array, change this to change order of table
     ?>
 <!DOCTYPE html>
 <html lang="en">
