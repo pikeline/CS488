@@ -18,6 +18,21 @@
     Headers go into the http requests. It describes data. <br>
     For example, content-type: application/json<br>
     This can be used to tell the client what type of data is being sent. and what to do with it.<br>
-    
+    When you get a http request, you get a response. In the response, there is a preamble and a payload. The payload can be html or json. <br>
+    The preamble is the headers. <br>
+    They tell the browser what they are getting, etc, etc. <br>
+
+    Mime types are used to tell the browser what type of data is being sent. <br>
+    For example, text/html, application/json, etc. <br>
+    Mime stands for Multipurpose Internet Mail Extensions. <br>
+    They were built in the 70s to help send emails. <br>
+    Headers are an associative array, with a key and a value. <br>
+
+    If the apache webserver requests a file in the directory, if there is a .htaccess file, it will read it first<br>
+    You can rewrite the url. For example, /cat can be rewritten to /index.php?name=cat<br>
+
+    You can also put redirects in there, etc. <br>
+
+    It's a way to tell apache to do stuff at request time before it gets to the file. <br>
 </body>
 </html>
