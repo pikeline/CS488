@@ -60,7 +60,7 @@ switch ($task) {
 
         if ($id > 0) {
             // Build the UPDATE statement
-            $sql = "UPDATE " . BATTLE_TABLE . "name='$name', email='$email', age='$age', winner='$winner', scariness='$scariness, arena='$arena', favorite='$favorite', factor='$factor', confidence='$confidence', explanation='$explanation', hidden='$hidden' WHERE id=$id ";
+            $sql = "UPDATE " . BATTLE_TABLE . " SET name='$name', email='$email', age=$age, winner='$winner', scariness=$scariness, arena='$arena', favorite='$favorite', factor='$factor', confidence=$confidence, explanation='$explanation', hidden='$hidden' WHERE id=$id ";
         } else {
             // Build the INSERT statement
             $sql = "INSERT INTO " . BATTLE_TABLE . " VALUES (NULL, '$name', '$email', $age, '$winner', '$scariness', '$arena', '$favorite', '$factor', '$confidence', '$explanation', '$hidden')";
