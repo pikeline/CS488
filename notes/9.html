@@ -34,5 +34,64 @@
     You can also put redirects in there, etc. <br>
 
     It's a way to tell apache to do stuff at request time before it gets to the file. <br>
+
+    <h1>Within API.php</h1>
+    First thing to set are the headers. <br>
+    The headers are set with the header() function. <br>
+    They are content-type: application/json. <br>
+    This is a mime type. <br>
+    We also set CORS : * <br>
+    CORS is Cross Origin Resource Sharing. <br>
+    This is a security feature. It should be ok if browser is not associated with different domain. <br>
+    However, we generally consume api data with some other client. If that client is on a different domain, it will not work. <br>
+    That is why you need to set CORS to * <br>
+    If you want to set it to a specific domain, you can do that too. <br>
+    ex: CORS: y.com allows y.com to access the api. <br>
+    Next, we want to process our request. <br>
+    For our homework, we need to process 3 different get requests. <br>
+    One for work, one to get acts and scenes, and one to get the lines. <br>
+    Next, we hit the database for data.<br>
+    In PHP, we get a result set. We need to loop over the return set. <br>
+    We need to form a php data structure that we can convert to JSON. <br>
+    Then, we are gonna echo the JSON data. <br>
+    Finally, we are going to exit. <br>
+
+    This data can be consumed by a client with file_get_contents() or curl. <br>
+
+    <h1>Shakespear DB</h1>
+    Works table: work_id, title, long title, year, genre)<br>
+    Chapters table: chapter_id pk, work_id fk, act, scene, description) work id is a foreign key to works table. It is a one to many relationship.<br>
+    Alternatively, the work id, act, and scene can be a composite key. <br>
+    Paragraphs table: paragraph_id pk, work_id fk, act, scene, number, character fk, text) <br>
+    The work id, act, scene, and number can be a composite key. <br>
+    The work id is a foreign key to the works table. <br>
+    The character is a foreign key to the characters table. <br>
+    It isn't necessary for the homework maybe. <br>
+    The call can be detected with isset($_GET['work']) <br>
+    It can be used to populate an enum. That enum in a switch statement decides what is sent. <br>
+
+    To populate the rows, you can use a while loop. <br>
+    $works = []; <br>
+    while($row = $result->fetch_assoc()) { <br>
+        $data[] = $row; <br>
+    } <br>
+
+    Then, you can echo json_encode($data); <br>
+
+    In php you can do <br>
+    #a = []; <br>
+    #a[] = 1; <br>
+    #a[] = 2; <br>
+    This is the shorthand for array_push. <br>
+    It assigns it to an empty array, then pushes the values. <br>
+
+    Ex: <br>
+    $a['a'] = 1;<br>
+    $a['b'] = 2;<br>
+    Json_encode will give an object. <br>
+    Json_encode($a) will give {"a":1,"b":2} <br>
+    In PHP, objects and associative arrays are the same. <br>
+    You can also do this with 2d arrays. Ex: $a[0][] = 1; $a[0][] = 2; $a[1][] = 3; $a[1][] = 4; <br>
+    This will give [[1,2],[3,4]] <br>
 </body>
 </html>
