@@ -20,6 +20,7 @@
 
   RewriteRule ^([^/]+)$ api.php?work=$1 [QSA,NC]
   # NOTE FOR FUTURE +. will eat up the rest of the URL.
+  # ^/ is one or more of all, but not /, which is the delimiter
 
   RewriteRule ^([^/]+)/([^/]+)/([^/]+)$ api.php?work=$1&act=$2&scene=$3 [QSA,NC]
 

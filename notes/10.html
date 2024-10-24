@@ -3,9 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ORM</title>
 </head>
 <body>
-    
+    files that start with . are hidden files.<br>
+    For example, you can put a .htaccess file in a directory to prevent people from accessing it.<br>
+    Or, you can put it in the root directory for maintenance.<br>
+    You can also do redirects as well as URL rewrites.<br>
+
+    <h2>ORM</h2>
+    We will get a class_data.ops.php file.<br>
+    It has methods like load (takes primary key to return a single record), save (does insert or update), delete, load_from_request() (loads form submissions) <br>
+
+    We will inherit this class, and create table specific classes.<br>
+    For example, T1.class <br>
+    T1.class would know the fields of the table. <br>
+
+    This is called ORM, or Object Relational Mapping.<br>
+    It is a way to map database tables to classes.<br>
+
+    Example:<br>
+    $t1 = new T1();<br>
+    $t1->load(5);<br>
+    This creates an object with the data from the table.<br>
+    This is called an active record.<br>
+    $t1->name = 'new name';<br>
+    $t1->save();<br>
+
+    The t1.class inherits from class_data.ops.php. The base class has the methods, while the child extends the methods to the needs of the specific table.<br>
+
+    You can also use it to insert stuff into the database.<br>
+    $t1 = new T1();<br>
+    $t1->values['name'] = 'new name';<br>
+    $t1->save();<br>
+
+    <h1>Password hashing</h1>
+    Passwords should be hashed before storing them in the database.<br>
+    This is because if the database is compromised, the passwords are not stored in plain text.<br>
+    Checksums also help to ensure that the data has not been tampered with.<br>
+    Checksums work by hashing the data, and then comparing the hash to the hash of the data.<br>
+    If the hashes are the same, the data has not been tampered with.<br>
+    If the hashes are different, the data has been tampered with.<br>
+
+    <h1>Server side includes</h1>
+    You can include files in PHP using the require("top.php") function.<br>
+    You can create two files named top.php and bottom.php with the beginning and ending of all files.<br>
+    Then you can include them in all files. They will have the same start and ending.<br>
+    You can also use include instead of require. The difference is that require will stop the script if the file is not found, while include will not.<br>
+
 </body>
 </html>
