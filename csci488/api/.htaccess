@@ -1,0 +1,40 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  #####
+  # Set the base path for the API script using the rewrite
+  # Leave out public_html, since Apache automatically resolves /~username/ to /~username/public_html/
+
+  RewriteBase /~cherepanovds/csci488/api/
+
+
+  #####
+  # Set a RewriteCond condition to ONLY rewrite requests that appear to be for a directory - like api/dog
+  # The !-f says to ignore actual files - so won't rewrite requests to other files (like the API clients
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+
+
+  #####
+  # Rewrites a URL like /~knuckles/csci488/api/dog to be /~knuckles/csci488/api/2_api_data.php?query=dog
+
+  RewriteRule ^([^/]+)$ api.php?work=$1 [QSA,NC]
+  # NOTE FOR FUTURE +. will eat up the rest of the URL.
+
+  RewriteRule ^([^/]+)/([^/]+)/([^/]+)$ api.php?work=$1&act=$2&scene=$3 [QSA,NC]
+
+
+  # The first stuff is a Regular Expression (Regex).  Regex is used for pattern matching.
+  # ^ means start and $ means end
+  # () means capture a match inside, which populates the variable $1 with the match
+  # . is a wildcard that matches any character
+  # + is a quantifier that means "1 or more"
+
+  # We could use (.*), where * is a quantifier that means "0 or more"
+  # That would mean the rewrite rule would match only /~knuckles/api/ which would send an empty string to the API
+
+  # The things at the end are called Flags.
+  # QSA is Query String Append.
+  # NC is No Case -- case insensitive matching
+
+ </IfModule>

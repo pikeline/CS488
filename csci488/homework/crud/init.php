@@ -20,6 +20,9 @@ if ($mysqli->connect_errno) {
 Database Tables
 ******************************************************************************************/
 define('BATTLE_TABLE', 'cherepanov_battle');
+define("SHAKESPEARE_WORKS_TABLE", 'shakespeare_works');
+define("SHAKESPEARE_CHAPTERS_TABLE", 'shakespeare_chapters');
+define("SHAKESPEARE_PARAGRAPHS_TABLE", 'shakespeare_paragraphs');
 
 /******************************************************************************************
 Classes
