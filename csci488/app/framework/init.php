@@ -29,8 +29,7 @@ require_once 'class_data_operations.php'; // Parent Class for ORM/AR functionali
 require_once 'class_lib.php';     // Wrapper for useful utility functions
 
 // Table-specific classes to implement ORM/AR
-require_once 'class_people_table.php';
-require_once 'class_states_table.php';
+require_once 'class_account_table.php';
 
 
 /******************************************************************************************
