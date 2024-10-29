@@ -2,7 +2,7 @@
 require 'init.php'; // database connection, etc
 
 // Static Method - don't need new people object.
-$people_data = people::get_people_and_states();
+$people_data = people::get_people_and_states();   
 
 
 // Common Page Top for all Application Pages
