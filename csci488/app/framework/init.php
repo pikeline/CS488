@@ -39,7 +39,7 @@ General Init Tasks
 session_start();
 
 // Consolidate $_GET and $_POST super globals
-$get_post    = array_merge($_GET,$_POST);
+$GET_POST    = array_merge($_GET,$_POST);
 
 // No whitespace after the closing php tag because that generates script output.
 ?>
