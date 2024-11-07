@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11 Notes</title>
+</head>
+<body>
+    Php has a filter_var function that can be used to validate and sanitize data. The function takes two arguments, the data to be validated and the filter to be used. The filter can be a predefined filter or a custom filter. The function returns the filtered data if the data is valid and false otherwise. The function can also be used to sanitize data by using the FILTER_SANITIZE_STRING filter. The function can also be used to validate email addresses by using the FILTER_VALIDATE_EMAIL filter. The function can also be used to validate URLs by using the FILTER_VALIDATE_URL filter. The function can also be used to validate IP addresses by using the FILTER_VALIDATE_IP filter. The function can also be used to validate integers by using the FILTER_VALIDATE_INT filter. The function can also be used to validate floats by using the FILTER_VALIDATE_FLOAT filter. The function can also be used to validate booleans by using the FILTER_VALIDATE_BOOLEAN filter. The function can also be used to validate regular expressions by using the FILTER_VALIDATE_REGEXP filter. The function can also be used to validate custom filters by using the FILTER_VALIDATE_REGEXP filter. The function can also be used to validate arrays by using the FILTER_REQUIRE_ARRAY filter. The function can also be used to validate booleans by using the FILTER_REQUIRE_SCALAR filter. The function can also be used to validate integers by using the FILTER_REQUIRE_INT filter. The function can also be used to validate floats by using the FILTER_REQUIRE_FLOAT filter. The function can also be used to validate strings by using the FILTER_REQUIRE_STRING filter. The function can also be used to validate encoded strings by using the FILTER_REQUIRE_ENCODED filter. The function can also be used to validate URLs by using the FILTER_REQUIRE_URL filter. The function can also be used to validate emails by using the FILTER_REQUIRE_EMAIL filter. The function can also be used to validate IP addresses by using the FILTER_REQUIRE_IP filter. The function can also be used to validate MAC addresses by using the FILTER_REQUIRE_MAC filter. The function can also be used to validate regular expressions by using the FILTER_REQUIRE_REGEXP filter. The function can also be used to validate custom filters by using the FILTER_REQUIRE_REGEXP filter. The function can also be used to validate arrays by using the FILTER_REQUIRE_ARRAY filter. The function can also be used to validate booleans by using the FILTER_REQUIRE_SCALAR filter. The function can also be used to validate integers by using the FILTER_REQUIRE_INT filter. The function can also be used to validate floats by using the FILTER_REQUIRE_FLOAT filter. <br>
+    PHP also has a password hash function. It is built to take work. It is used to avoid brute force. It uses a function called bcrypt. bcrypt can be tweaked to be slower as computing power increases. <br>
+
+    <h1>Cookies</h1>
+    Browsers request scripts from the php server. In that script, we can set cookies with setcookie("Name", "data", args[]). The args[] can be an array with the following keys: expires, path, domain, secure, httponly. The expires key can be used to set the expiration date of the cookie. The path key can be used to set the path of the cookie. The domain key can be used to set the domain of the cookie. The secure key can be used to set the secure flag of the cookie. The httponly key can be used to set the httponly flag of the cookie. <br>
+    Cookies can be read with the $_COOKIE superglobal. <br>
+    Cookies can be deleted by setting the expiration date to a time in the past. <br>
+    You want to call setcookie() before ANY output is sent to the browser. <br>
+    Cookies are stored on the client side. <br>
+    It is returned by the server in the HTTP header. <br>
+    HTTP headers can have access control and mime type as well as cookies. They aren't in the webpage payload. The cookie goes in the header, not the payload. This is why it is bad to call it in the page.<br>
+    The browser then stores the cookie in a file on the client's computer. <br>
+    On chrome, the file is in the AppData folder. C:\Users\Dennis\AppData\Local\Google\Chrome\User Data\Default\Network. It is an SQL Lite file. View it in <a href="https://sqliteviewer.app/">here</a><br>
+    In firefox, the file is in the profile folder at the root. <br>
+    
+    Subsequent requests will contain that cookie in the $_COOKIE superglobal. <br>
+    $_Request is a combination of $_GET, $_POST, and $_COOKIE. <br>
+    But, be careful, cookies can be manipulated by the user. <br>
+    $_REQUEST can be confusing, so it is good to name your cookies with c_ or something. <br>
+    
+    Cookies are sent with every request until they expire. <br>
+    Cookies can expire by session or by time. <br>
+    Cookies can be set to expire by session by not setting the expires key. <br>
+    Cookies can be set to expire by time by setting the expires key to a time in the future. <br>
+    Session cookies live until the browser is closed. <br>
+    Persistent cookies live until the expiration date. <br>
+    Persistent cookies have a max age of 1 year. You can make it perpetual by constantly updating the expiration date. <br>
+    Or, you can set the expiration date to 0. <br>
+    In firefox, cookies can be found by going to the developer tools, storage, cookies. <br>
+    In chrome, cookies can be found by going to the developer tools, application, cookies. <br>
+
+    3rd party cookies are cookies that are set by a different domain than the one you are on. <br>
+    They are called pixels. <br>
+    They are a 1x1 pixel graphic that is loaded from a different domain. <br>
+    This 1x1 pixel graphic is loaded from a different domain. <br>
+    For example, "https://t.com", where t is the tracking website. <br>
+    For the browser to load the graphic, it has to transact with t.com. So, if you are on a.com, the browser will send the cookie to t.com. <br>
+    Then, any sites that have the same pixel will also get the cookie. <br>
+
+    <h1>Session</h1>
+    Sessions are stored on the server. <br>
+    session_start() creates a session file. On Ubuntu it is in /var/lib/php/sessions. <br>
+    These files are named sess_ and then a unique id. <br>
+    The unique id is stored in a cookie on the client side. <br>
+    The cookie is named PHPSESSID. <br>
+    You store data "in session" by using the $_SESSION superglobal. <br>
+    The data is stored in the session file on the server. <br>
+    The session file is deleted when the session is destroyed. <br>
+    The session is destroyed when the browser is closed. <br>
+    For example, $_SESSION['name'] = 'Dennis'; <br>
+    This is often in the init file. <br>
+    Then, the session cookie is set. On subsequent requests, the cookie comes back and the session file is read. <br>
+    The session file is read and the data is stored in the $_SESSION superglobal. <br>
+    You can access the saved data. <br>
+    The default lifetime of a session is 24 minutes. <br>
+    The garbage collector runs every 24 minutes. <br>
+    The garbage collector deletes session files that are older than the lifetime. <br>
+
+</body>
+</html>
