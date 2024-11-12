@@ -64,5 +64,41 @@
     The garbage collector runs every 24 minutes. <br>
     The garbage collector deletes session files that are older than the lifetime. <br>
 
+    <h1>Recap</h1>
+    setcookie("Name", "data", args[]); <br>
+    Only expiration date is needed for hw. It is a utc timestamp. <br>
+    If you don't give an expiration date, it will be a session cookie. <br>
+    You can also set the path. The path is the directory that the cookie is valid in. <br>
+    / is the root directory and is the default. <br>
+    Cookies are stored on the client side in a SQL Lite file. <br>
+    The browser sends it back on any subsequent requests only to the domain that set it. <br>
+    So, different paths on the same domain can't access each other's cookies. <br>
+    The domain key can be used to set the domain of the cookie. <br>
+    For example, setcookie("Name", "data", ["expires" => time() + 3600, "path" => "/"]); <br>
+    Domain is the subdomain that the cookie is valid in. <br>
+    www.example.com and example.com are different domains. <br>
+
+    How do you know if a cookie is set? <br>
+    if (isset($_COOKIE['Name'])) { <br>
+        echo $_COOKIE['Name']; <br>
+    } <br>
+
+    <h1>PHP Sessions</h1>
+    session_start(); <br>
+    This creates a session file on the server. <br>
+    The session file is named sess_ and then a unique id. <br>
+    The unique id is stored in a cookie on the client side. <br>
+    The cookie is named PHPSESSID. <br>
+    You store data in the session by using the $_SESSION superglobal. <br>
+    For example, $_SESSION['name'] = 'Dennis'; <br>
+    The data can be any data structure. <br>
+    If a user returns, the $_SESSION superglobal is populated with the data from the session file as long as garbage collection hasn't run. <br>
+    That is why you need to call session_start() on every page. <br>
+
+    Why use get vs post? <br>
+    If you sit on a get request, you can't do anything. <br>
+    If you sit on a post request, there can be issues. For example, you can resubmit the form data to the database. <br>
+    Thats why you want to header away from the post request. <br>
+    If a user refreshes, they will not resubmit the post request since it is cleared. <br>
 </body>
 </html>
