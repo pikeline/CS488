@@ -1,4 +1,8 @@
 <?
+session_start();
+$now = time();
+setcookie("c_completed", $now, $now + 60*60*24*365);
+
 /*
 This page should:
 1) Display the signature in as indicated in the web page below.
@@ -22,16 +26,24 @@ But this is an exercise in Cookies and PHP session management, so just display t
     <title>Thank You</title>
   </head>
   <body>
-     Dear, (Put Signature Here)
-     <br><br>
-     Thank you for completing this survey, which is summarized further below.
-     <br>
-     Date Completed: (put here and use format like: January 15, 2022 at 4:30pm)
-     <br>
-     Time Elapsed Completing this Survey: (put here in minutes and seconds)
-     <br><br>
-     Should we find that you have perjured yourself, rest assured that our lawyers will contact you.
+    Dear, <?= htmlspecialchars($_SESSION["signature"]);?>
+    <br><br>
+    Thank you for completing this survey, which is summarized further below.
+    <br>
+    Date Completed: <?= date("F d\, o \a\\t h:ia", $now);?>
+    <br>
+    Time Elapsed Completing this Survey: (put here in minutes and seconds) <?= date("i:s ", ($now - $_COOKIE["c_first_load"]));?>
+    <br><br>
+    Should we find that you have perjured yourself, rest assured that our lawyers will contact you.
 
-      <!-- Display Survey Data Here -->
+    <h3>Previously Submitted Values</h3>
+    Are you cool?<br>
+    <?=$_SESSION["is_cool"];?><br>
+    Favorite bands?<br>
+    <?php foreach($_SESSION["like_bands"] as $key => $value){ ?>
+      <?=$value;?><br>
+    <?php }?>
+    Other bands liked:<br>
+    <?= htmlspecialchars($_SESSION["other_bands"]);?>
   </body>
 </html>

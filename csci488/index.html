@@ -50,6 +50,7 @@
                 <a class="dropdown-item" href="homework/form_summary.html">Form Summary</a>
                 <a class="dropdown-item" href="homework/crud/page_listing.php">CRUD</a>
                 <a class="dropdown-item" href="app/signup.php">Sign Up</a>
+                <a class="dropdown-item" href="homework/session/hw_page1.php">Sign Up</a>
               </div>
             </li>
           </ul>

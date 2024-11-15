@@ -1,4 +1,39 @@
 <?
+session_start();
+if(isset($_COOKIE["c_completed"])){
+  header("Location: hw_page1.php");
+}
+else{
+  //session data does not exist
+  if(!isset($_SESSION["is_cool"]) || !isset($_SESSION["like_bands"]) || !isset($_SESSION["other_bands"])){
+    header("Location: hw_page1.php");
+  }
+}
+
+if($_GET["action"] == "submit"){
+  if (validate()){
+    $_SESSION["signature"] = $_GET["signature"];
+    header("Location: hw_page3.php");
+  }
+  else{
+    if(trim($_GET["signature"]) == ""){
+      $message = "Error: Empty Signature";
+    }
+    if($_GET["user_certify"] != "yes"){
+      $message = "Error: Not Certified";
+    }
+  }
+}
+
+function validate(){
+  if(trim($_GET["signature"]) == ""){
+    return false;
+  }
+  if($_GET["user_certify"] != "yes"){
+    return false;
+  }
+  return true;
+}
 /*
 This page should:
 1) Transfer to page 1 if:
@@ -30,11 +65,21 @@ Note:
     <title>Verify Profile</title>
   </head>
   <body>
+    <h3>Previously Submitted Values</h3>
+    Are you cool?<br>
+    <?=$_SESSION["is_cool"];?><br>
+    Favorite bands?<br>
+    <?php foreach($_SESSION["like_bands"] as $key => $value){ ?>
+      <?=$value;?><br>
+    <?php }?>
+    Other bands liked:<br>
+    <?= htmlspecialchars($_SESSION["other_bands"]);?>
+    <hr>
 
-    <!-- Display Survey Data Here -->
-
-    <br><br>
+    <br>
+    <?=$message;?><br>
     <form action="" method="GET" >
+      <input type="hidden" name="action" value="submit">
       Verify that your profile data shown above is accurate by signing below.
       <br>
       <input type="text" name="signature" value="" placeholder="Sign Here">
