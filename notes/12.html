@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Notes</title>
+</head>
+<body>
+    <h1>Hashing</h1>
+    <p>Hashing is a process of converting input data into a fixed-size string of bytes. The output is a hash value.</p>
+    Sha256 spits out a 256-bit hash value. It is a one-way function, meaning you can't reverse-engineer the input from the output.</p>
+    A hash can contain data, which can then be concatenated with a nonce or salt. A nonce is a random number that is used only once. A salt is a random number that is used to hash a password.</p>
+    A salt is like a little extra to enhance the security of the hash. It is a random number that is used to hash a password. It is stored in the database along with the hash. It is used to prevent a rainbow table attack.</p>
+    Salts are typically kept secret. <br>
+    Nonce is a one-time value that is found by chance. Once found, it is not a secret
+
+    <h1>Blockchain</h1>
+    <p>Blockchain is a chain of blocks. Each block contains a list of transactions. Each block is linked to the previous block using a hash. The hash of the previous block is stored in the current block. This is how the chain is formed.</p>
+    It is kind of like a linked list. <br>
+    To get the next block, you need to know the hash of the previous block. <br>
+    The first block is called the genesis block. It is the first block in the chain. <br>
+    The last block is called the tail block. It is the last block in the chain. <br>
+    The chain is immutable. Once a block is added to the chain, it cannot be changed. <br>
+    The chain is distributed. It is stored on multiple computers. <br>
+    The chain is decentralized. There is no central authority that controls the chain. <br>
+    To get from a block to the next, you need to find N1, which is a nonce. <br>
+    The nonce is a number such that hash(previous block hash + nonce) starts with N zeros. <br>
+    It uses sha 256 hashing algorithm. <br>
+    The number of zeros is called the difficulty. <br>
+    Once you find the block, you get awarded bitcoin. <br>
+</body>
+</html>

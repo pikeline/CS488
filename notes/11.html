@@ -100,5 +100,23 @@
     If you sit on a post request, there can be issues. For example, you can resubmit the form data to the database. <br>
     Thats why you want to header away from the post request. <br>
     If a user refreshes, they will not resubmit the post request since it is cleared. <br>
+
+    <h1>Sessions are stored in the server</h1>
+    You can destroy a session by calling session_destroy(). <br>
+    Or, you can unset the session variables. <br>
+    If there is no session, you can transfer back to the home page. <br>
+
+    <h1>Login Security</h1>
+    If you make a library called require security.php, you can put all of the security functions in there. <br>
+    You can have stuff like is_logged_in() and require_login(). <br>
+    <pre>
+        if(!is_logged_in()) {
+            header("Location: login.php");
+            exit;
+        }
+    </pre>
+    You can also have a function called require_admin(). <br>
+    If you go to the login form, and you are already logged in, you can redirect to the home page. <br>
+
 </body>
 </html>
