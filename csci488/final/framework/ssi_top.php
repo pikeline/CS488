@@ -9,7 +9,7 @@
   <meta name="keywords" content="CS 488">
   <meta name="description" content="CS 488 Home Page">
 
-  <!-- base sets base url for all relative urls, comment out for local access -->
+  <!-- base sets url for all relative urls -->
   <base href="/~cherepanovds/csci488/">
 
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
@@ -24,7 +24,7 @@
 
 </head>
 
-<body class="bg-dark">
+<body class="bg-dark text-white">
   <div class="container-lg gx-0">
     <nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-primary">
       <div class="container-fluid">
@@ -35,10 +35,10 @@
         <div class="collapse navbar-collapse justify-content-sm-center" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
                 Homework
               </a>
               <div class="dropdown-menu">
@@ -61,83 +61,4 @@
   </div>
 
   <br class="gap">
-
   <main class="container-lg">
-    <div class="row">
-      <div class="col-lg-6 rounded">
-        <div class="bg-secondary rounded full p-3">
-          This is a class on <i>database driven</i> web applications and <u>software engineering</u>
-          with a focus on server-side programming and databases rather than looks.
-        </div>
-      </div>
-      <div class="col-lg-6 rounded">
-        <div class="bg-secondary rounded full p-3">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Course</th>
-                <th>Time</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>CS 112</td>
-                <td>Spring 2023</td>
-              </tr>
-              <tr>
-                <td>CS 212</td>
-                <td>Summer 2023</td>
-              </tr>
-              <tr>
-                <td>CS 107</td>
-                <td>Summer 2023</td>
-              </tr>
-              <tr>
-                <td>CS 212</td>
-                <td>Summer 2023</td>
-              </tr>
-              <tr>
-                <td>CS 250</td>
-                <td>Fall 2023</td>
-              </tr>
-              <tr>
-                <td>CS 317</td>
-                <td>Fall 2023</td>
-              </tr>
-              <tr>
-                <td>CS 327</td>
-                <td>Fall 2023</td>
-              </tr>
-              <tr>
-                <td>CS 250</td>
-                <td>Fall 2023</td>
-              </tr>
-              <tr>
-                <td>CS 270</td>
-                <td>Spring 2023</td>
-              </tr>
-              <tr>
-                <td>CS 417</td>
-                <td>Spring 2023</td>
-              </tr>
-            </tbody>
-        </div>
-
-        </table>
-      </div>
-    </div>
-  </main>
-
-  <footer class="container-fluid sticky-bot bg-primary text-white">
-    <div class="row">
-      <div class="col-lg-6">
-        <a href=" https://www.lakeforest.edu/academics/programs/math" class="link-light">Math/CS department</a>
-      </div>
-      <div class="col-lg-6 text-end">
-        &copy;Dennis Cherepanov
-      </div>
-    </div>
-  </footer>
-</body>
-
-</html>
