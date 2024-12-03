@@ -21,6 +21,10 @@ Database Tables
 ******************************************************************************************/
 define('ACCOUNT_TABLE', 'cherepanov_final_account');
 define('LOGONSTATE_TABLE', 'cherepanov_final_logonState');
+define('APILOG_TABLE', 'cherepanov_final_api_log');
+define("SHAKESPEARE_WORKS_TABLE", 'shakespeare_works');
+define("SHAKESPEARE_CHAPTERS_TABLE", 'shakespeare_chapters');
+define("SHAKESPEARE_PARAGRAPHS_TABLE", 'shakespeare_paragraphs');
 
 
 /******************************************************************************************
@@ -31,6 +35,8 @@ require_once 'class_lib.php';     // Wrapper for useful utility functions
 
 // Table-specific classes to implement ORM/AR
 require_once 'class_account_table.php';
+require_once 'class_logon_state_table.php';
+require_once 'class_api_log_table.php';
 
 
 /******************************************************************************************
@@ -43,4 +49,6 @@ session_start();
 $GET_POST    = array_merge($_GET,$_POST);
 
 // No whitespace after the closing php tag because that generates script output.
+
+define("MAX_SESSION_TIME", 60*60); //1 hour
 ?>
