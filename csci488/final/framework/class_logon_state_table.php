@@ -51,13 +51,25 @@ class logon_state extends data_operations{
     }
     $state = new logon_state();
     $state->load($_COOKIE["c_logon_token"], "logon_token");
-    if($state->get_id_value() == null){//state not in db
+    if($state->get_id_value() == null){//state not in db somehow
       return false;
     }
-    if($state->values["logon_last_access_time"] < time() - MAX_SESSION_TIME){//expired
+    if($state->values["logon_last_access_time"] < time() - MAX_SESSION_TIME){//expired on server
       return false;
     }
+    $state->values["logon_last_access_time"] = time();
+    $state->save();
+    self::update_cookie($_COOKIE["c_logon_token"]);
     return true;
+  }
+  public static function get_account_from_state(){
+    $state = self::get_state_from_token();
+    if($state == null){
+      return null;
+    }
+    $acc = new account();
+    $acc->load($state->values["logon_fk_acc_id"]);
+    return $acc;
   }
 }
 ?>

@@ -25,6 +25,7 @@ define('APILOG_TABLE', 'cherepanov_final_api_log');
 define("SHAKESPEARE_WORKS_TABLE", 'shakespeare_works');
 define("SHAKESPEARE_CHAPTERS_TABLE", 'shakespeare_chapters');
 define("SHAKESPEARE_PARAGRAPHS_TABLE", 'shakespeare_paragraphs');
+define('PG_LIST_QUERY', "SELECT * FROM " . APILOG_TABLE);
 
 
 /******************************************************************************************

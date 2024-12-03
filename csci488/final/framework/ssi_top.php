@@ -1,3 +1,11 @@
+<?php
+if (!isset($security)){
+  $security = false;
+}
+if($security){
+  require_once "framework/security.php";
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -35,7 +43,7 @@
         <div class="collapse navbar-collapse justify-content-sm-center" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" href="#">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
@@ -54,6 +62,20 @@
                 <a class="dropdown-item" href="final/index.php">Final</a>
               </div>
             </li>
+            <?php if (logon_state::check_valid_state()) { ?>
+            <!-- New Account Profile Section -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
+                <?= logon_state::get_account_from_state()->values["acc_email"] ?>
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="final/account.php">Home</a>
+                <a class="dropdown-item" href="final/signup.php?task=edit">Edit Profile</a>
+                <a class="dropdown-item" href="final/stats.php">Stats</a>
+                <a class="dropdown-item" href="final/logout.php">Logout</a>
+              </div>
+            </li>
+            <?php } ?>
           </ul>
         </div>
       </div>

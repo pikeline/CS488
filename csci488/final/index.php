@@ -2,11 +2,14 @@
 require_once "framework/init.php";
 require_once "framework/ssi_top.php";
 
+if(logon_state::check_valid_state()){
+    header("Location: account.php");
+    exit();
+}
+
 $task = $GET_POST["task"];
 $now = time();
-$err_msg = "";
-
-//TODO: if state is valid, redirect to account.php
+$err_msg = isset($GET_POST["expired"]) ? "Session expired." : "";
 
 switch($task){
     case "login":
@@ -53,7 +56,7 @@ function get_saved_email(){
         <button type="submit" style="display:inline-block">Log In</button>
         <button type="button" style="display:inline-block" onclick="window.location.href='final/signup.php'">Go to Sign Up</button>
     </div>
-    <span class="text-danger"><?= "&nbsp;" . $err_msg ?></span>
+    <span class="text-danger"><?= $err_msg ?></span>
 </form>
 <?php
 require_once "framework/ssi_bottom.php";

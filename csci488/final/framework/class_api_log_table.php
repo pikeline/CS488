@@ -30,14 +30,51 @@ class api_log extends data_operations {
     This keeps the database logistics separate from the application logic in the PHP files that generate HTML.
   */
   
-    public static function validate($token){
-        $acc = new account();
-        $acc->load($token, "acc_api_key");
-        if ($acc->get_id_value() == null){//invalid token
-            return false;
-        }
-        return true;
-    }
+  public static function validate($token){
+      $acc = new account();
+      $acc->load($token, "acc_api_key");
+      if ($acc->get_id_value() == null){//invalid token
+          return false;
+      }
+      return true;
+  }
+
+  public static function get_total_hits(){
+    $sql = "SELECT COUNT(*) FROM " . APILOG_TABLE;
+    $result = lib::db_query($sql);
+    $row = $result->fetch_row();//only 1
+    return $row[0];
+  }
+
+  public static function most_recent_hit(){
+    $sql = "SELECT api_log_access_time FROM " . APILOG_TABLE . " ORDER BY api_log_access_time DESC LIMIT 1";//most recent, only 1
+    $result = lib::db_query($sql);
+    $row = $result->fetch_row();
+    return $row[0];
+  }
+
+  public static function get_works(){
+    $sql = "SELECT COUNT(*) FROM " . APILOG_TABLE .
+    " WHERE api_log_query NOT LIKE '%WORK%' AND api_log_query NOT LIKE '%ACT%' AND api_log_query NOT LIKE '%scene%'";
+    $result = lib::db_query($sql);
+    $row = $result->fetch_row();//only 1
+    return $row[0];
+  }
+  public static function get_acts(){
+    $sql = "SELECT COUNT(*) FROM " . APILOG_TABLE .
+    " WHERE api_log_query LIKE '%WORK%' AND api_log_query NOT LIKE '%ACT%' AND api_log_query NOT LIKE '%scene%'";
+    $result = lib::db_query($sql);
+    $row = $result->fetch_row();//only 1
+    return $row[0];
+
+  }
+  public static function get_paragraphs(){
+    $sql = "SELECT COUNT(*) FROM " . APILOG_TABLE .
+    " WHERE api_log_query LIKE '%WORK%' AND api_log_query LIKE '%ACT%' AND api_log_query LIKE '%scene%'";
+    $result = lib::db_query($sql);
+    $row = $result->fetch_row();//only 1
+    return $row[0];
+  }
 } //end class
 
 ?>

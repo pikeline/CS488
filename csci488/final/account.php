@@ -1,4 +1,5 @@
 <?php
+$security = true;
 require_once 'framework/init.php';
 
 $table_names = array(
@@ -40,6 +41,7 @@ require_once 'framework/ssi_top.php';
 </table>
 <br>
 <button type="button" style="display:inline-block" onclick="window.location.href='final/signup.php?task=edit'">Edit Profile</button>
+<button type="button" style="display:inline-block" onclick="window.location.href='final/stats.php'">Stats</button>
 
 <?php
 require_once 'framework/ssi_bottom.php';

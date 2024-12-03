@@ -1,4 +1,5 @@
 <?php
+$security = true;
 require_once 'framework/init.php';
 
 $err_msg = $GET_POST["err_msg"];
@@ -109,6 +110,12 @@ function validate_edit(account $acc){
     if ($existing->get_id_value() != null){
         echo "a".$existing->get_id_value() != $acc->get_id_value()."a";
         $err_msg = "This email is already associated with an account";
+        return false;
+    }
+    //check if id matches logged in user's id
+    $curr = logon_state::get_account_from_state();
+    if ($curr->get_id_value() != $acc->get_id_value()){
+        $err_msg = "You can only edit your own account";
         return false;
     }
     return true;
