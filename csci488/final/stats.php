@@ -10,12 +10,12 @@ $most_recent = date("m/d/Y", $most_recent);
 
 $work_hits = api_log::get_works();
 $act_hits = api_log::get_acts();
-$paragraph_hits = api_log::get_paragraphs();
+$good_paragraph_hits = api_log::get_paragraphs();
 
 $listing = new pg_list(PG_LIST_QUERY, "api_log_id", "api_log_access_time", "DESC", "", "", 1, 5, true, 5, 'even_row_css', 'odd_row_css', 'highlight_css');
 $listing->add_column('api_log_id', 'ID');
 $listing->add_column('api_log_fk_acc_id', 'API Key');
-$listing->add_column('api_log_access_time', 'Timestamp');
+$listing->add_column('api_log_access_time', 'Time', "mysql_timestamp_no_seconds");
 $listing->add_column('api_log_ipv4', 'IP', "", "", "", "", false);
 $listing->add_column('api_log_query', 'Query', "", "", "", "", false);
 
@@ -38,11 +38,14 @@ $listing->init_list();
         <td style="border: 1px solid white;"><?=$most_recent?></td>
         <td style="border: 1px solid white;"><?= $work_hits ?></td>
         <td style="border: 1px solid white;"><?= $act_hits ?></td>
-        <td style="border: 1px solid white;"><?= $paragraph_hits ?></td>
+        <td style="border: 1px solid white;"><?= $good_paragraph_hits ?></td>
     </tbody>
 </table>
 
 <?=$listing->get_html()?>
+<br>
+<br>
+<br>
 <?php
 require_once "framework/ssi_bottom.php";
 ?>

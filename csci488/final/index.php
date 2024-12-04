@@ -25,7 +25,7 @@ switch($task){
         $login = logon_state::create_state_from_acc($acc, $now);
         $login->save();
         if ($_POST["remember"] == 1){
-            setcookie("c_remember_email", $acc->values["acc_email"], $now + 60 * 60 * 24 * 30); //30 days
+            setcookie("c_remember_email", $acc->values["acc_email"], $now + MAX_COOKIE_TIME);
         }
         else{
             setcookie("c_remember_email", $acc->values["acc_email"], $now - 1);//forget

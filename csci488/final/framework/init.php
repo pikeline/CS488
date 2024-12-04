@@ -26,6 +26,7 @@ define("SHAKESPEARE_WORKS_TABLE", 'shakespeare_works');
 define("SHAKESPEARE_CHAPTERS_TABLE", 'shakespeare_chapters');
 define("SHAKESPEARE_PARAGRAPHS_TABLE", 'shakespeare_paragraphs');
 define('PG_LIST_QUERY', "SELECT * FROM " . APILOG_TABLE);
+define('HIST_LIST_QUERY', "SELECT * FROM " . LOGONSTATE_TABLE . " JOIN " . ACCOUNT_TABLE . " ON " . LOGONSTATE_TABLE . ".logon_fk_acc_id = " . ACCOUNT_TABLE . ".acc_id");
 
 
 /******************************************************************************************
@@ -52,4 +53,5 @@ $GET_POST    = array_merge($_GET,$_POST);
 // No whitespace after the closing php tag because that generates script output.
 
 define("MAX_SESSION_TIME", 60*60); //1 hour
+define("MAX_COOKIE_TIME", 60*60*24*30); //30 days
 ?>

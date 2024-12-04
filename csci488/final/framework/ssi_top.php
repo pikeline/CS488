@@ -72,6 +72,7 @@ if($security){
                 <a class="dropdown-item" href="final/account.php">Home</a>
                 <a class="dropdown-item" href="final/signup.php?task=edit">Edit Profile</a>
                 <a class="dropdown-item" href="final/stats.php">Stats</a>
+                <a class="dropdown-item" href="final/history.php">History</a>
                 <a class="dropdown-item" href="final/logout.php">Logout</a>
               </div>
             </li>

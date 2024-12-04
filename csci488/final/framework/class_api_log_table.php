@@ -58,6 +58,23 @@ class api_log extends data_operations {
     " WHERE api_log_query NOT LIKE '%WORK%' AND api_log_query NOT LIKE '%ACT%' AND api_log_query NOT LIKE '%scene%'";
     $result = lib::db_query($sql);
     $row = $result->fetch_row();//only 1
+    $good_work_hits = $row[0];
+    $bad_work_hits = self::get_works_when_no_act() + self::get_works_when_no_scene();
+    return $good_work_hits + $bad_work_hits;
+  }
+  //bad calls to api default to work
+  private static function get_works_when_no_act(){
+    $sql = "SELECT COUNT(*) FROM " . APILOG_TABLE .
+    " WHERE api_log_query LIKE '%WORK%' AND api_log_query LIKE '%ACT%' AND api_log_query NOT LIKE '%scene%'";
+    $result = lib::db_query($sql);
+    $row = $result->fetch_row();//only 1
+    return $row[0];
+  }
+  private static function get_works_when_no_scene(){
+    $sql = "SELECT COUNT(*) FROM " . APILOG_TABLE .
+    " WHERE api_log_query LIKE '%WORK%' AND api_log_query NOT LIKE '%ACT%' AND api_log_query LIKE '%scene%'";
+    $result = lib::db_query($sql);
+    $row = $result->fetch_row();//only 1
     return $row[0];
   }
   public static function get_acts(){

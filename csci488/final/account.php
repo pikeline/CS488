@@ -12,6 +12,8 @@ $table_names = array(
 $acc = new account();
 $state = logon_state::get_state_from_token();
 $acc->load($state->values["logon_fk_acc_id"]);
+
+$api_prefix = "https://csci.lakeforest.edu/~cherepanovds/csci488/final/api.php?token=" . $acc->values["acc_api_key"];
 ?>
 <?php
 require_once 'framework/ssi_top.php';
@@ -40,8 +42,28 @@ require_once 'framework/ssi_top.php';
     </tbody>
 </table>
 <br>
-<button type="button" style="display:inline-block" onclick="window.location.href='final/signup.php?task=edit'">Edit Profile</button>
-<button type="button" style="display:inline-block" onclick="window.location.href='final/stats.php'">Stats</button>
+<h1>Sample API Calls</h1>
+<br>
+<div>
+    <h3>Get Works</h3>
+    <div>
+        <a href="<?= $api_prefix ?>"><?= $api_prefix ?></a>
+    </div>
+    <br>
+    <h3>Get Acts</h3>
+    <div>
+        <a href="<?= $api_prefix ?>&work=hamlet"><?= $api_prefix ?>&work=hamlet</a>
+    </div>
+    <br>
+
+    <h3>Get Paragraphs</h3>
+    <div>
+        <a href="<?= $api_prefix ?>&work=hamlet&act=1&scene=1"><?= $api_prefix ?>&work=hamlet&act=1&scene=1</a>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>
 
 <?php
 require_once 'framework/ssi_bottom.php';
