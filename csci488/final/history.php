@@ -23,6 +23,7 @@ $listing->add_column('logon_ipv4', 'IP', "", "", "", "", false);
 
 $listing->init_list();
 ?>
+<h1>History</h1>
 <?=$listing->get_html()?>
 <?php
 require_once "framework/ssi_bottom.php";
